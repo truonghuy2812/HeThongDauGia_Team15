@@ -27,4 +27,6 @@ public abstract class BaseDAO {
             System.err.println("❌ Lỗi kết nối: " + e.getMessage());
         }
     }
+
+
 }
