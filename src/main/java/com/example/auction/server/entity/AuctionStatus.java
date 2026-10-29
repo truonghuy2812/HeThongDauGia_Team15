@@ -30,6 +30,11 @@ public enum AuctionStatus {
     public String getMieuta() {
         return mieuta;
     }
+
+    // kiểm tra phiên đã đến giờ mở cửa hoặc đang chờ chưa
+    public boolean isPending() {
+        return this == PENDING;
+    }
     // kiểm tra phiên có đang diễn ra kh
     public boolean isActive() {
         return this == ACTIVE;
