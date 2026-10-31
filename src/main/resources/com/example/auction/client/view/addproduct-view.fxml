@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="850.0" styleClass="root-body" stylesheets="@signup.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.AddProductController">
+
+    <!-- TOP: Header hệ thống (Đồng bộ nền trắng phẳng cao cấp với màn hình chính) -->
+    <top>
+        <HBox prefHeight="80.0" prefWidth="850.0" styleClass="header-bar" BorderPane.alignment="CENTER">
+            <children>
+                <Label styleClass="welcome-title" text="🎯 HỆ THỐNG ĐẤU GIÁ" />
+                <Separator orientation="VERTICAL" styleClass="header-separator" />
+                <Label fx:id="nameBidder" styleClass="greeting" text="Name" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <!-- Cụm nút chức năng bên phải -->
+                <HBox alignment="CENTER" spacing="12.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#back" styleClass="action-btn" text="⬅ Quay lại" />
+                        <Button mnemonicParsing="false" styleClass="action-btn" text="⚙ Cài đặt" />
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- LEFT: Form điền thông tin sản phẩm (Sử dụng VBox tự động giãn cách chuyên nghiệp) -->
+    <left>
+        <VBox prefHeight="470.0" prefWidth="380.0" styleClass="form-wrapper" BorderPane.alignment="CENTER">
+            <children>
+                <Label styleClass="form-section-title" text="THÔNG TIN SẢN PHẨM" />
+
+                <!-- Ô nhập tên sản phẩm -->
+                <VBox styleClass="input-container">
+                    <children>
+                        <Label styleClass="input-label" text="Tên sản phẩm" />
+                        <TextField fx:id="itemName" promptText="Nhập tên sản phẩm..." styleClass="custom-field" />
+                    </children>
+                </VBox>
+
+                <!-- Ô chọn loại danh mục -->
+                <VBox styleClass="input-container">
+                    <children>
+                        <Label styleClass="input-label" text="Danh mục loại" />
+                        <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="320.0" styleClass="custom-menubutton" text="Chọn loại sản phẩm">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Action 1" />
+                                <MenuItem mnemonicParsing="false" text="Action 2" />
+                            </items>
+                        </MenuButton>
+                    </children>
+                </VBox>
+
+                <!-- Ô nhập mô tả sản phẩm (Đã chuyển sang TextArea để xuống dòng mượt mà) -->
+                <VBox styleClass="input-container">
+                    <children>
+                        <Label styleClass="input-label" text="Mô tả chi tiết" />
+                        <TextArea fx:id="infoText" prefHeight="100.0" promptText="Nhập mô tả đặc điểm sản phẩm..." styleClass="custom-textarea" wrapText="true" />
+                    </children>
+                </VBox>
+
+                <!-- Khu vực nút bấm tải ảnh lên -->
+                <VBox styleClass="input-container">
+                    <children>
+                        <Label styleClass="input-label" text="Hình ảnh minh họa" />
+                        <Button fx:id="pickImage" mnemonicParsing="false" onAction="#handlePickImage" prefHeight="40.0" prefWidth="320.0" styleClass="image-picker-btn" text="📸 Chọn tệp ảnh từ máy tính" />
+                    </children>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <!-- Nút Đệ trình Lưu (ADD) -->
+                <Button fx:id="addProduct" mnemonicParsing="false" onAction="#addItem" prefHeight="45.0" prefWidth="320.0" styleClass="submit-btn" text="LƯU &amp; TẠO SẢN PHẨM" />
+            </children>
+        </VBox>
+    </left>
+
+    <!-- RIGHT: Vùng trống hiển thị xem trước thông tin ảnh/sản phẩm (Card View đổ bóng) -->
+    <center>
+        <VBox alignment="CENTER" styleClass="preview-layout" BorderPane.alignment="CENTER">
+            <children>
+                <AnchorPane fx:id="showInfo" prefHeight="410.0" prefWidth="410.0" styleClass="preview-card-pane" />
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
