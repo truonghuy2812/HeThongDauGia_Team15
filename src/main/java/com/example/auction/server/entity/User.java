@@ -1,6 +1,7 @@
 package com.example.auction.server.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -31,4 +32,26 @@ public class User implements Serializable {
 
     public Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
+
+    // bổ sung
+
+    //hàm kiểm tra quyền đấu giá
+    public boolean canBid() {
+        // Chỉ cho phép đấu giá nếu có Role và không phải là GUEST
+        return this.role != null && this.role != Role.GUEST;
+    }
+
+    //ghi đè equals và hashCode để so sánh User (bidder có trùng seller không)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

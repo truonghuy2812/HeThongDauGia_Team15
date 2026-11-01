@@ -213,4 +213,5 @@ public class Auction extends Entity {
     public void setEndTime(Instant endTime) {
         this.endTime = endTime;
     }
+
 }
