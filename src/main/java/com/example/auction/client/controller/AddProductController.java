@@ -1,5 +1,4 @@
 package com.example.auction.client.controller;
-
 import com.example.auction.client.view.AuctionClientApp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +12,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
-
 public class AddProductController {
     @FXML private TextField itemName;
     @FXML private MenuButton menuButton;
@@ -27,17 +25,14 @@ public class AddProductController {
         String productName = itemName.getText();
         String description = infoText.getText();
         String category = menuButton.getText();
-
         if (productName == null || productName.trim().isEmpty()) {
             showAlert(AlertType.ERROR, "Thiếu thông tin", "Vui lòng nhập tên sản phẩm!");
             return;
         }
-
         System.out.println("--- THÔNG TIN SẢN PHẨM MỚI ---");
         System.out.println("Tên SP: " + productName);
         System.out.println("Danh mục: " + category);
         System.out.println("Mô tả: " + description);
-
         showAlert(AlertType.INFORMATION, "Thành công", "Đọc dữ liệu FXML thành công! Kiểm tra Console.");
     }
     @FXML
@@ -71,7 +66,7 @@ public class AddProductController {
             // Thay đường dẫn này khớp với cấu trúc thư mục thực tế của nhóm
             // Bắt buộc phải có dấu "/" ở đầu
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/auction/client/view/Main.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+            Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
             stage.setTitle("Phần mềm Đấu giá - Team 15");
             stage.setScene(scene);
             stage.centerOnScreen();

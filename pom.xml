@@ -23,6 +23,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.github.mkpaz</groupId>
+            <artifactId>atlantafx-base</artifactId>
+            <version>3.0.0</version>
+        </dependency>
         <!-- JavaFX (cần classifier platform để đóng gói JAR chạy được) -->
         <dependency>
             <groupId>org.openjfx</groupId>

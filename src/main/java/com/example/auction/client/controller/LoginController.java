@@ -1,5 +1,4 @@
 package com.example.auction.client.controller;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,16 +19,16 @@ public class LoginController {
             showAlert(Alert.AlertType.WARNING, "Lỗi", "Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
             return;
         }
-
         // TODO: Đoạn này sau sẽ được thay bằng code gửi DTO qua Socket để nhờ Server kiểm tra
         System.out.println("Đang gửi yêu cầu đăng nhập cho: " + username);
         // 2. Chuyển cảnh (Tạm thời test bằng tài khoản admin/123)
-        if ("admin".equals(username) && "123".equals(password)) {
+        if ("admin".equals(username.trim()) && "123".equals(password.trim())) {
             System.out.println("Đăng nhập thành công!");
             goToMainScreen();
         } else {
             showAlert(Alert.AlertType.ERROR, "Thất bại", "Sai tên đăng nhập hoặc mật khẩu! (Tạm thời thử admin / 123)");
         }
+        SessionManager.login(username);
     }
     @FXML
     private void goToRegister() {
@@ -38,7 +37,7 @@ public class LoginController {
             Stage stage = (Stage) txtUsername.getScene().getWindow();
             // Đảm bảo tên file FXML khớp với tên bạn vừa tạo
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/auction/client/view/signup.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+            Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
             stage.setTitle("Đăng ký - Team 15");
             stage.setScene(scene);
             stage.centerOnScreen();
@@ -52,8 +51,8 @@ public class LoginController {
         try {
             Stage stage = (Stage) txtUsername.getScene().getWindow();
             // Đảm bảo đường dẫn này khớp với thư mục dự án của bạn
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/auction/client/view/Main.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/auction/client/view/MainAfterLogin.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
             stage.setTitle("Phần mềm Đấu giá - Team 15");
             stage.setScene(scene);
             stage.centerOnScreen();
@@ -62,7 +61,6 @@ public class LoginController {
             showAlert(Alert.AlertType.ERROR, "Lỗi hệ thống", "Không thể tải màn hình chính!");
         }
     }
-
     // Hàm tiện ích hiển thị thông báo
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
