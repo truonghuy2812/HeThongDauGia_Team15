@@ -1,10 +1,10 @@
 package com.example.auction.client.controller;
 
+import com.example.auction.client.view.AuctionClientApp;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.Image;
@@ -12,16 +12,15 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
+import java.io.IOException;
 
 public class AddProductController {
-
     @FXML private TextField itemName;
     @FXML private MenuButton menuButton;
     @FXML private TextArea infoText;
     @FXML private AnchorPane showInfo;
-
+    @FXML private Button btnback;
     private File selectedImageFile; //biến lưu trữ file ảnh
-
     //hàm thêm item
     @FXML
     private void addItem() {
@@ -41,7 +40,6 @@ public class AddProductController {
 
         showAlert(AlertType.INFORMATION, "Thành công", "Đọc dữ liệu FXML thành công! Kiểm tra Console.");
     }
-
     @FXML
     private void handlePickImage() {
         //mở cửa sổ File Explorer để chọn file
@@ -50,30 +48,37 @@ public class AddProductController {
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
         );
-
         //lấy cửa sổ hiện tại để hiển thị popup
         Stage currentStage = (Stage) menuButton.getScene().getWindow();
         selectedImageFile = fileChooser.showOpenDialog(currentStage);
-
         //xử lý ảnh sau khi nhặt
         if (selectedImageFile != null) {
             System.out.println("Đã load ảnh thành công: " + selectedImageFile.getName());
-
             Image image = new Image(selectedImageFile.toURI().toString());
             ImageView imageView = new ImageView(image);
-
             imageView.setFitWidth(400);
             imageView.setFitHeight(400);
             imageView.setPreserveRatio(true);
-
             showInfo.getChildren().clear();
             showInfo.getChildren().add(imageView);
         }
     }
-
     @FXML
     private void back() {
         System.out.println("Quay lại màn hình trước...");
+        Stage stage = (Stage) btnback.getScene().getWindow();
+        try {
+            // Thay đường dẫn này khớp với cấu trúc thư mục thực tế của nhóm
+            // Bắt buộc phải có dấu "/" ở đầu
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/auction/client/view/Main.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+            stage.setTitle("Phần mềm Đấu giá - Team 15");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+        } catch (IOException e) {
+            System.out.println("Lỗi load file Main.fxml: " + e.getMessage());
+            e.printStackTrace(); // In ra log đỏ để dễ sửa nếu sai đường dẫn
+        }
     }
 
     private void showAlert(AlertType alertType, String title, String message) {

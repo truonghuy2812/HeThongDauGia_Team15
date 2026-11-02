@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.MainController">
+    <children>
+        <Label layoutX="320.0" layoutY="100.0" text="HỆ THỐNG ĐẤU GIÁ - TEAM 15">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Label>
+
+        <!-- Nút bấm chuyển cảnh, đã liên kết với hàm goToAddProduct trong MainController -->
+        <Button fx:id="btnGoToAddProduct" layoutX="370.0" layoutY="250.0" mnemonicParsing="false" onAction="#goToAddProduct" prefHeight="50.0" prefWidth="160.0" text="Thêm Sản Phẩm Mới" />
+    </children>
+</AnchorPane>
