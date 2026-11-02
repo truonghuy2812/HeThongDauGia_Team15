@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.MainAfterLoginController">
+    <!-- PHẦN TRÊN: HEADER (Logo, Thanh tìm kiếm, Nút chức năng) -->
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </padding>
+            <children>
+                <Label text="AUCTION PRO" textFill="#e74c3c">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Region prefWidth="30.0" />
+                <TextField fx:id="txtSearch" prefHeight="35.0" prefWidth="350.0" promptText="Tìm kiếm sản phẩm đấu giá..." />
+                <Button mnemonicParsing="false" onAction="#handleSearch" prefHeight="35.0" style="-fx-background-color: #34495e; -fx-text-fill: white;" text="Tìm" />
+
+                <!-- Spacer đẩy các nút sang sát lề phải -->
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button mnemonicParsing="false" onAction="#goToAddProduct" prefHeight="35.0" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Đăng bán" />
+            <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#LogoutAction" prefHeight="35.0" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Đăng xuất " />
+            </children>
+        </HBox>
+    </top>
+
+    <!-- PHẦN TRÁI: DANH MỤC (Categories) -->
+    <left>
+        <VBox prefWidth="220.0" spacing="15.0" style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+            </padding>
+            <children>
+                <Label text="DANH MỤC">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent;" text="📱 Điện tử &amp; Công nghệ" />
+                <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent;" text="🚗 Xe cộ" />
+                <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent;" text="🎨 Nghệ thuật &amp; Sưu tầm" />
+                <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent;" text="👗 Thời trang" />
+            </children>
+        </VBox>
+    </left>
+
+    <!-- PHẦN GIỮA: KHU VỰC HIỂN THỊ SẢN PHẨM -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
+            <content>
+                <VBox spacing="20.0">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                    <children>
+                        <Label text="🔥 Đang đấu giá sôi nổi">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <FlowPane fx:id="productContainer" hgap="20.0" vgap="20.0" />
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
