@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #e9ecef;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.LoginController">
+    <children>
+        <!-- Hộp Form Đăng Nhập Căn Giữa -->
+        <VBox alignment="CENTER" layoutX="300.0" layoutY="120.0" prefHeight="350.0" prefWidth="300.0" spacing="20.0" style="-fx-background-color: #ffffff; -fx-padding: 30; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+            <children>
+                <Label text="ĐĂNG NHẬP" textFill="#333333">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+
+                <VBox spacing="5.0">
+                    <Label text="Tên đăng nhập:" textFill="#555555" />
+                    <TextField fx:id="txtUsername" prefHeight="35.0" promptText="Nhập username..." />
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <Label text="Mật khẩu:" textFill="#555555" />
+                    <PasswordField fx:id="txtPassword" prefHeight="35.0" promptText="Nhập mật khẩu..." />
+                </VBox>
+
+                <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Đăng Nhập" />
+
+                <Hyperlink onAction="#goToRegister" text="Chưa có tài khoản? Đăng ký ngay" textFill="#2196f3" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

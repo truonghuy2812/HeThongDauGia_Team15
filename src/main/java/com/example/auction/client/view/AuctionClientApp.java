@@ -26,7 +26,7 @@ public class AuctionClientApp extends Application {
 
         // Tạo một màn hình trống rỗng cho Team 15 tự code
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(AuctionClientApp.class.getResource("addproduct-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(AuctionClientApp.class.getResource("/com/example/auction/client/view/login-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 900, 600);
             stage.setTitle("Phần mềm Đấu giá - Team 15");
             stage.setScene(scene);
