@@ -31,7 +31,6 @@ public class SceneManager {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Scene scene = new Scene(loader.load(), width, height);
-
             primaryStage.setTitle(title);
             primaryStage.setScene(scene);
             primaryStage.centerOnScreen();
