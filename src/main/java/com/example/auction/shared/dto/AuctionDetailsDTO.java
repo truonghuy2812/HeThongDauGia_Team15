@@ -46,7 +46,7 @@ public class AuctionDetailsDTO implements Serializable {
   public AuctionDetailsDTO(Auction auction) {
     if (auction == null) return;
 
-    this.auctionId = auction.getId();
+    this.auctionId = (long) auction.getId();
     this.startPrice = auction.getStartPrice();
     this.stepPrice = auction.getStepPrice();
     this.currentHighestBid = auction.getCurrentHighestBid();
