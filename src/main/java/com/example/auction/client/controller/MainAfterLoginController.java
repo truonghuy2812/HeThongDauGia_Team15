@@ -31,32 +31,16 @@ public class MainAfterLoginController {
     }
     @FXML
     private void LogoutAction(){
-        switchScene("/com/example/auction/client/view/Main.fxml","Đăng xuất hệ thống",1000,600);
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/Main.fxml", "Trang chủ");
     }
     @FXML
     private void goToAddProduct() {
         System.out.println("User " + SessionManager.getCurrentUser() + " đang mở màn hình Thêm Sản Phẩm...");
-        switchScene("/com/example/auction/client/view/addproduct-view.fxml", "Đăng bán sản phẩm", 1000, 600);
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/addproduct-view.fxml", "Trang chủ");
     }
     /**
      * Hàm dùng chung để chuyển màn hình (Tái sử dụng cho code gọn)
      */
-    private void switchScene(String fxmlPath, String title, double width, double height) {
-        try {
-            // Lấy Stage hiện tại từ thanh search (hoặc bất kỳ component nào đang hiển thị)
-            Stage stage = (Stage) txtSearch.getScene().getWindow();
-            // Chú ý: Nếu nhóm bạn có file SceneManager chuyên xử lý chuyển trang,
-            // bạn có thể xóa đoạn FXMLLoader dưới đây và gọi hàm của SceneManager ở đây nhé!
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Scene scene = new Scene(fxmlLoader.load(), width, height);
-            stage.setTitle(title);
-            stage.setScene(scene);
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Lỗi điều hướng", "Không thể tải màn hình: " + fxmlPath);
-        }
-    }
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

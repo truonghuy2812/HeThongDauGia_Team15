@@ -33,33 +33,11 @@ public class LoginController {
     @FXML
     private void goToRegister() {
         System.out.println("Chuyển sang màn hình Đăng ký...");
-        try {
-            Stage stage = (Stage) txtUsername.getScene().getWindow();
-            // Đảm bảo tên file FXML khớp với tên bạn vừa tạo
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/auction/client/view/signup.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
-            stage.setTitle("Đăng ký - Team 15");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể tải màn hình Đăng ký!");
-        }
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/signup.fxml", "Trang đăng nhập");
     }
     // Hàm tiện ích chuyển sang màn hình chính
     private void goToMainScreen() {
-        try {
-            Stage stage = (Stage) txtUsername.getScene().getWindow();
-            // Đảm bảo đường dẫn này khớp với thư mục dự án của bạn
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/auction/client/view/MainAfterLogin.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
-            stage.setTitle("Phần mềm Đấu giá - Team 15");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Lỗi hệ thống", "Không thể tải màn hình chính!");
-        }
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/MainAfterLogin.fxml", "Trang chủ");
     }
     // Hàm tiện ích hiển thị thông báo
     private void showAlert(Alert.AlertType type, String title, String content) {

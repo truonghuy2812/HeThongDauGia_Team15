@@ -36,18 +36,7 @@ public class SignupController {
     }
     @FXML
     private void goToLogin() {
-        try {
-            Stage stage = (Stage) txtUsername.getScene().getWindow();
-            // Đảm bảo đường dẫn chuẩn xác
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/auction/client/view/login-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 900, 600);
-            stage.setTitle("Đăng nhập - Team 15");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Lỗi", "Không thể tải màn hình Đăng nhập!");
-        }
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/login-view.fxml", "Trang chủ");
     }
     private void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);

@@ -61,21 +61,8 @@ public class AddProductController {
     @FXML
     private void back() {
         System.out.println("Quay lại màn hình trước...");
-        Stage stage = (Stage) btnback.getScene().getWindow();
-        try {
-            // Thay đường dẫn này khớp với cấu trúc thư mục thực tế của nhóm
-            // Bắt buộc phải có dấu "/" ở đầu
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/auction/client/view/Main.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
-            stage.setTitle("Phần mềm Đấu giá - Team 15");
-            stage.setScene(scene);
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            System.out.println("Lỗi load file Main.fxml: " + e.getMessage());
-            e.printStackTrace(); // In ra log đỏ để dễ sửa nếu sai đường dẫn
-        }
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/MainAfterLogin.fxml", "Trang chủ");
     }
-
     private void showAlert(AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
