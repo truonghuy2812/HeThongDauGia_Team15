@@ -32,6 +32,7 @@ public class MainAfterLoginController {
     @FXML
     private void LogoutAction(){
         SceneManager.getInstance().switchScene("/com/example/auction/client/view/Main.fxml", "Trang chủ");
+        SessionManager.logout();
     }
     @FXML
     private void goToAddProduct() {

@@ -16,7 +16,7 @@ public class AuctionClientApp extends Application {
                 System.out.println("Không thể kết nối đến Server!");
             }
         }).start();
-        SceneManager.getInstance().switchScene("/com/example/auction/client/view/login-view.fxml", "Đăng nhập - Team 15");
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/Main.fxml", "Đăng nhập - Team 15");
         stage.setOnCloseRequest(e -> {
             AuctionClientSocket.getInstance().closeConnection();
             System.exit(0);
