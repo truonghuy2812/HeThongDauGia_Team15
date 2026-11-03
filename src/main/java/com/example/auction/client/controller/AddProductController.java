@@ -1,73 +1,97 @@
 package com.example.auction.client.controller;
-import com.example.auction.client.view.AuctionClientApp;
+
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import java.io.File;
-import java.io.IOException;
+
 public class AddProductController {
+
     @FXML private TextField itemName;
     @FXML private MenuButton menuButton;
     @FXML private TextArea infoText;
     @FXML private AnchorPane showInfo;
     @FXML private Button btnback;
-    private File selectedImageFile; //biến lưu trữ file ảnh
-    //hàm thêm item
+
+    private File selectedImageFile; // Biến lưu trữ file ảnh
+
+    @FXML
+    public void initialize() {
+        // TỐI ƯU UI: Tự động cập nhật chữ trên MenuButton khi người dùng chọn 1 danh mục
+        if (menuButton != null) {
+            for (MenuItem item : menuButton.getItems()) {
+                item.setOnAction(event -> menuButton.setText(item.getText()));
+            }
+        }
+    }
+
     @FXML
     private void addItem() {
         String productName = itemName.getText();
         String description = infoText.getText();
         String category = menuButton.getText();
+        String seller = SessionManager.getCurrentUser(); // Lấy tên người đăng từ thẻ Session
+
+        // 1. KIỂM TRA NHẬP LIỆU (FRONTEND)
         if (productName == null || productName.trim().isEmpty()) {
-            showAlert(AlertType.ERROR, "Thiếu thông tin", "Vui lòng nhập tên sản phẩm!");
+            SceneManager.getInstance().showAlert(AlertType.WARNING, "Thiếu thông tin", "Vui lòng nhập tên sản phẩm!");
             return;
         }
+
+        if (selectedImageFile == null) {
+            SceneManager.getInstance().showAlert(AlertType.WARNING, "Thiếu hình ảnh", "Vui lòng chọn hình ảnh cho sản phẩm!");
+            return;
+        }
+
+        // TODO: [BACKEND] - Chuyển file ảnh (selectedImageFile) thành mảng byte[] hoặc chuỗi Base64.
+        // TODO: [BACKEND] - Đóng gói (productName, category, description, seller, imageBytes) vào ItemDTO và bắn qua Socket.
         System.out.println("--- THÔNG TIN SẢN PHẨM MỚI ---");
+        System.out.println("Người bán: " + seller);
         System.out.println("Tên SP: " + productName);
         System.out.println("Danh mục: " + category);
         System.out.println("Mô tả: " + description);
-        showAlert(AlertType.INFORMATION, "Thành công", "Đọc dữ liệu FXML thành công! Kiểm tra Console.");
+        System.out.println("File ảnh: " + selectedImageFile.getAbsolutePath());
+
+        SceneManager.getInstance().showAlert(AlertType.INFORMATION, "Thành công", "Đăng bán sản phẩm thành công! (Giả lập)");
+
+        // Đăng bán xong tự động quay về trang chủ
+        back();
     }
+
     @FXML
     private void handlePickImage() {
-        //mở cửa sổ File Explorer để chọn file
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Chọn hình ảnh cho sản phẩm");
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
         );
-        //lấy cửa sổ hiện tại để hiển thị popup
-        Stage currentStage = (Stage) menuButton.getScene().getWindow();
-        selectedImageFile = fileChooser.showOpenDialog(currentStage);
-        //xử lý ảnh sau khi nhặt
+
+        // TỐI ƯU: Lấy trực tiếp cửa sổ chính từ SceneManager thay vì ép kiểu từ menuButton
+        selectedImageFile = fileChooser.showOpenDialog(SceneManager.getInstance().getPrimaryStage());
+
+        // Xử lý hiển thị ảnh xem trước (Preview) sau khi chọn
         if (selectedImageFile != null) {
             System.out.println("Đã load ảnh thành công: " + selectedImageFile.getName());
             Image image = new Image(selectedImageFile.toURI().toString());
             ImageView imageView = new ImageView(image);
-            imageView.setFitWidth(400);
-            imageView.setFitHeight(400);
+
+            // Căn chỉnh kích thước ảnh vừa với khung showInfo
+            imageView.setFitWidth(showInfo.getPrefWidth() > 0 ? showInfo.getPrefWidth() : 350);
+            imageView.setFitHeight(showInfo.getPrefHeight() > 0 ? showInfo.getPrefHeight() : 350);
             imageView.setPreserveRatio(true);
+
             showInfo.getChildren().clear();
             showInfo.getChildren().add(imageView);
         }
     }
+
     @FXML
     private void back() {
-        System.out.println("Quay lại màn hình trước...");
-        SceneManager.getInstance().switchScene("/com/example/auction/client/view/MainAfterLogin.fxml", "Trang chủ");
-    }
-    private void showAlert(AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        System.out.println("Quay lại màn hình Trang chủ...");
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/MainAfterLogin.fxml", "Trang chủ hệ thống - Team 15");
     }
 }
