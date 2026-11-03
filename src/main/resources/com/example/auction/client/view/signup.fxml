@@ -1,46 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #e9ecef;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.SignupController">
+<AnchorPane prefHeight="650.0" prefWidth="960.0" style="-fx-background-color: #f1f5f9;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.SignupController">
     <children>
-        <VBox alignment="CENTER" layoutX="275.0" layoutY="50.0" prefHeight="500.0" prefWidth="350.0" spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 30; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+        <!-- Hộp thẻ trung tâm bo góc với bóng đổ mềm -->
+        <HBox layoutX="80.0" layoutY="45.0" prefHeight="560.0" prefWidth="800.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 25, 0, 0, 8); -fx-border-radius: 20; -fx-border-color: #e2e8f0; -fx-border-width: 1;">
+
+            <!-- Cột trái: Banner giới thiệu thương hiệu phong cách Gradient -->
             <children>
-                <Label text="ĐĂNG KÝ TÀI KHOẢN" textFill="#333333">
-                    <font>
-                        <Font name="System Bold" size="22.0" />
-                    </font>
-                </Label>
-
-                <VBox spacing="5.0">
-                    <Label text="Tên đăng nhập:" textFill="#555555" />
-                    <TextField fx:id="txtUsername" prefHeight="35.0" promptText="Nhập username..." />
+                <VBox alignment="CENTER" prefHeight="560.0" prefWidth="350.0" spacing="20.0" style="-fx-background-color: linear-gradient(to bottom right, #1e3a8a, #0284c7); -fx-background-radius: 20 0 0 20; -fx-padding: 40;">
+                    <children>
+                        <Label text="AUCTION PRO" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="26.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" maxWidth="260.0" styleClass="subtle" text="Nền tảng đấu giá trực tuyến minh bạch, bảo mật và tốc độ cao hàng đầu." textAlignment="CENTER" textFill="#e0f2fe" wrapText="true">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Label>
+                        <Region VBox.vgrow="ALWAYS" />
+                        <VBox alignment="CENTER" spacing="8.0">
+                            <children>
+                                <Label text="Đã là thành viên?" textFill="#bae6fd" />
+                                <Button mnemonicParsing="false" onAction="#goToLogin" style="-fx-background-color: transparent; -fx-border-color: #ffffff; -fx-border-radius: 20; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Đăng nhập ngay">
+                                    <padding>
+                                        <Insets bottom="8.0" left="24.0" right="24.0" top="8.0" />
+                                    </padding>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </children>
                 </VBox>
 
-                <VBox spacing="5.0">
-                    <Label text="Email:" textFill="#555555" />
-                    <TextField fx:id="txtEmail" prefHeight="35.0" promptText="Nhập email..." />
+                <!-- Cột phải: Form nhập dữ liệu người dùng -->
+                <VBox alignment="CENTER_LEFT" prefHeight="560.0" prefWidth="450.0" spacing="12.0" style="-fx-padding: 35 45 35 45;">
+                    <children>
+                        <Label styleClass="title-2" text="Tạo tài khoản mới" textFill="#0f172a">
+                            <font>
+                                <Font name="System Bold" size="22.0" />
+                            </font>
+                        </Label>
+                        <Label styleClass="subtle" text="Điền các thông tin cơ bản để tham gia hệ thống" textFill="#64748b">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Label>
+
+                        <VBox spacing="4.0">
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                            <children>
+                                <Label text="Tên tài khoản" textFill="#334155">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txtUsername" prefHeight="38.0" promptText="ví dụ: nguyenviet" style="-fx-background-radius: 8;" styleClass="rounded" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="4.0">
+                            <children>
+                                <Label text="Địa chỉ Email" textFill="#334155">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="txtEmail" prefHeight="38.0" promptText="tenban@domain.com" style="-fx-background-radius: 8;" styleClass="rounded" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="4.0">
+                            <children>
+                                <Label text="Mật khẩu" textFill="#334155">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                                <PasswordField fx:id="txtPassword" prefHeight="38.0" promptText="Ít nhất 6 ký tự..." style="-fx-background-radius: 8;" styleClass="rounded" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="4.0">
+                            <children>
+                                <Label text="Xác nhận mật khẩu" textFill="#334155">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                                <PasswordField fx:id="txtConfirmPassword" prefHeight="38.0" promptText="Nhập lại mật khẩu..." style="-fx-background-radius: 8;" styleClass="rounded" />
+                            </children>
+                        </VBox>
+
+                        <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="42.0" prefWidth="360.0" style="-fx-background-radius: 8; -fx-cursor: hand;" styleClass="accent, large" text="Đăng Ký Tài Khoản">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </Button>
+
+                        <HBox alignment="CENTER" spacing="5.0">
+                            <children>
+                                <Label text="Đã có tài khoản?" textFill="#64748b" />
+                                <Hyperlink onAction="#goToLogin" text="Đăng nhập tại đây" />
+                            </children>
+                            <VBox.margin>
+                                <Insets top="5.0" />
+                            </VBox.margin>
+                        </HBox>
+                    </children>
                 </VBox>
-
-                <VBox spacing="5.0">
-                    <Label text="Mật khẩu:" textFill="#555555" />
-                    <PasswordField fx:id="txtPassword" prefHeight="35.0" promptText="Nhập mật khẩu..." />
-                </VBox>
-
-                <VBox spacing="5.0">
-                    <Label text="Nhập lại mật khẩu:" textFill="#555555" />
-                    <PasswordField fx:id="txtConfirmPassword" prefHeight="35.0" promptText="Xác nhận mật khẩu..." />
-                </VBox>
-
-                <Button mnemonicParsing="false" onAction="#handleRegister" prefHeight="40.0" prefWidth="290.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="Đăng Ký">
-                    <VBox.margin>
-                        <javafx.geometry.Insets top="10.0" />
-                    </VBox.margin>
-                </Button>
-
-                <Hyperlink onAction="#goToLogin" text="Đã có tài khoản? Quay lại Đăng nhập" textFill="#2196f3" />
             </children>
-        </VBox>
+        </HBox>
     </children>
 </AnchorPane>

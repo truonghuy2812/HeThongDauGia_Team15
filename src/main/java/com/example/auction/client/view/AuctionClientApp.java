@@ -1,4 +1,7 @@
 package com.example.auction.client.view;
+import atlantafx.base.theme.PrimerLight; // hoặc CupertinoLight, NordLight tùy thích
+import javafx.application.Application;
+
 
 import com.example.auction.client.clientnetworkmanager.AuctionClientSocket;
 import com.example.auction.client.controller.SceneManager;
@@ -8,6 +11,7 @@ import javafx.stage.Stage;
 public class AuctionClientApp extends Application {
     @Override
     public void start(Stage stage) {
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         SceneManager.getInstance().setPrimaryStage(stage);
         new Thread(() -> {
             try {
