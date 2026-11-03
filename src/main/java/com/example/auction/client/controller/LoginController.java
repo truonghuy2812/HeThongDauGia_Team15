@@ -1,51 +1,45 @@
 package com.example.auction.client.controller;
+
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import java.io.IOException;
+
 public class LoginController {
     @FXML private TextField txtUsername;
     @FXML private PasswordField txtPassword;
+
     @FXML
     private void handleLogin() {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        // 1. Kiểm tra nhập liệu cơ bản
+
+        // 1. KIỂM TRA NHẬP LIỆU
         if (username.trim().isEmpty() || password.trim().isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Lỗi", "Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
+            // Đã sửa: Gọi hàm qua SceneManager
+            SceneManager.getInstance().showAlert(Alert.AlertType.WARNING, "Lỗi", "Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
             return;
         }
-        // TODO: Đoạn này sau sẽ được thay bằng code gửi DTO qua Socket để nhờ Server kiểm tra
+
+        // TODO: [BACKEND] - Đóng gói username/password thành LoginDTO và gửi qua Socket tới Server.
+        // TODO: [BACKEND] - Lắng nghe phản hồi từ Server xem mật khẩu có đúng không (true/false).
         System.out.println("Đang gửi yêu cầu đăng nhập cho: " + username);
-        // 2. Chuyển cảnh (Tạm thời test bằng tài khoản admin/123)
+
+        // 2. XỬ LÝ KẾT QUẢ ĐĂNG NHẬP (Tạm thời test bằng tài khoản admin/123)
         if ("admin".equals(username.trim()) && "123".equals(password.trim())) {
             System.out.println("Đăng nhập thành công!");
+            SessionManager.login(username.trim());
             goToMainScreen();
-            SessionManager.login(username);
-
         } else {
-            showAlert(Alert.AlertType.ERROR, "Thất bại", "Sai tên đăng nhập hoặc mật khẩu! (Tạm thời thử admin / 123)");
+            SceneManager.getInstance().showAlert(Alert.AlertType.ERROR, "Thất bại", "Sai tên đăng nhập hoặc mật khẩu! (Tạm thời thử admin / 123)");
         }
-}
+    }
     @FXML
     private void goToRegister() {
         System.out.println("Chuyển sang màn hình Đăng ký...");
-        SceneManager.getInstance().switchScene("/com/example/auction/client/view/signup.fxml", "Trang đăng nhập");
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/signup.fxml", "Đăng ký tài khoản - Team 15");
     }
-    // Hàm tiện ích chuyển sang màn hình chính
     private void goToMainScreen() {
-        SceneManager.getInstance().switchScene("/com/example/auction/client/view/MainAfterLogin.fxml", "Trang chủ");
-    }
-    // Hàm tiện ích hiển thị thông báo
-    private void showAlert(Alert.AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/MainAfterLogin.fxml", "Trang chủ hệ thống");
     }
 }
