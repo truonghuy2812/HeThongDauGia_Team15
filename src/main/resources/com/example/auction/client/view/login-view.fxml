@@ -2,7 +2,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #e9ecef;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.LoginController">
     <children>
         <!-- Hộp Form Đăng Nhập Căn Giữa -->

@@ -36,7 +36,6 @@ public class MainAfterLoginController {
     private void LogoutAction(){
         System.out.println("Đang xử lý đăng xuất...");
         // QUAN TRỌNG: Phải xé bỏ thẻ Session trước khi đẩy người dùng ra ngoài
-        SessionManager.logout();
         SceneManager.getInstance().switchScene("/com/example/auction/client/view/Main.fxml", "Trang chủ");
         SessionManager.logout();
     }
