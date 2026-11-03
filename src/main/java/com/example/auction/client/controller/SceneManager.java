@@ -8,8 +8,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 public class SceneManager {
+    // 1. ÁP DỤNG SINGLETON PATTERN
     private static SceneManager instance;
-    private Stage primaryStage;
+    private Stage primaryStage; //Biến lưu trữ của sổ gốc của Window
     private SceneManager() {}
     public static synchronized SceneManager getInstance() {
         if (instance == null) {
@@ -17,12 +18,14 @@ public class SceneManager {
         }
         return instance;
     }
+    // 2. QUẢN LÝ KHUNG CỬA SỔ (STAGE)
     public void setPrimaryStage(Stage stage) {
         this.primaryStage = stage;
     }
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+    // 3. HÀM CHUYỂN CẢNH DÙNG CHUNG
     public void switchScene(String fxmlPath, String title, double width, double height) {
         if (primaryStage == null) {
             System.err.println("❌ LỖI: Chưa khởi tạo PrimaryStage trong SceneManager!");
@@ -39,12 +42,9 @@ public class SceneManager {
             showAlert("Lỗi chuyển trang", "Không thể tải giao diện: " + fxmlPath);
         }
     }
-    // Tiện tay làm luôn một hàm Overload (nếu lười không muốn truyền width, height)
     public void switchScene(String fxmlPath, String title) {
-        // Tự động lấy kích thước mặc định 1000x600
         switchScene(fxmlPath, title, 1000, 600);
     }
-    // Làm luôn một hàm Show Alert dùng chung cho nhàn
     public void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

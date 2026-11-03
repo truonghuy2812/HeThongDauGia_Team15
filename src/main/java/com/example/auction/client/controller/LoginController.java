@@ -25,11 +25,12 @@ public class LoginController {
         if ("admin".equals(username.trim()) && "123".equals(password.trim())) {
             System.out.println("Đăng nhập thành công!");
             goToMainScreen();
+            SessionManager.login(username);
+
         } else {
             showAlert(Alert.AlertType.ERROR, "Thất bại", "Sai tên đăng nhập hoặc mật khẩu! (Tạm thời thử admin / 123)");
         }
-        SessionManager.login(username);
-    }
+}
     @FXML
     private void goToRegister() {
         System.out.println("Chuyển sang màn hình Đăng ký...");
