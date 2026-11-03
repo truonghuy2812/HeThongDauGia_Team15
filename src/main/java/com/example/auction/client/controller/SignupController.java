@@ -1,48 +1,49 @@
 package com.example.auction.client.controller;
+
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 public class SignupController {
+
     @FXML private TextField txtUsername;
     @FXML private TextField txtEmail;
     @FXML private PasswordField txtPassword;
     @FXML private PasswordField txtConfirmPassword;
+
     @FXML
     private void handleRegister() {
         String username = txtUsername.getText();
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         String confirmPassword = txtConfirmPassword.getText();
-        // Kiểm tra dữ liệu đầu vào
+
+        // 1. KIỂM TRA DỮ LIỆU ĐẦU VÀO (FRONTEND)
         if (username.trim().isEmpty() || email.trim().isEmpty() ||
                 password.trim().isEmpty() || confirmPassword.trim().isEmpty()) {
-            showAlert(Alert.AlertType.WARNING, "Lỗi", "Vui lòng điền đầy đủ thông tin!");
+            SceneManager.getInstance().showAlert(Alert.AlertType.WARNING, "Thiếu thông tin", "Vui lòng điền đầy đủ thông tin!");
             return;
         }
+
         if (!password.equals(confirmPassword)) {
-            showAlert(Alert.AlertType.ERROR, "Lỗi", "Mật khẩu nhập lại không khớp!");
+            SceneManager.getInstance().showAlert(Alert.AlertType.ERROR, "Lỗi mật khẩu", "Mật khẩu nhập lại không khớp!");
             return;
         }
-        // TODO: Chỗ này sau sẽ gọi Socket để gửi DTO chứa thông tin User mới về Server
+
+        // TODO: [BACKEND] - Đóng gói thông tin thành RegisterDTO/UserDTO và gửi qua Socket về Server.
+        // TODO: [BACKEND] - Chờ phản hồi từ Server (kiểm tra trùng username/email) trước khi báo thành công.
         System.out.println("Đang gửi yêu cầu đăng ký cho: " + username + " - Email: " + email);
-        showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đăng ký thành công! (Giả lập)");
-        goToLogin(); // Đăng ký xong tự động quay về form đăng nhập
+
+        SceneManager.getInstance().showAlert(Alert.AlertType.INFORMATION, "Thành công", "Đăng ký thành công! (Giả lập)");
+
+        // Đăng ký xong tự động điều hướng về form đăng nhập
+        goToLogin();
     }
+
     @FXML
     private void goToLogin() {
-        SceneManager.getInstance().switchScene("/com/example/auction/client/view/login-view.fxml", "Trang chủ");
-    }
-    private void showAlert(Alert.AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+        System.out.println("Chuyển hướng về màn hình Đăng nhập...");
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/login-view.fxml", "Đăng nhập - Team 15");
     }
 }
