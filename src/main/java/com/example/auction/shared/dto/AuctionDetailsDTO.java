@@ -23,7 +23,6 @@ public class AuctionDetailsDTO implements Serializable {
   public Long sellerId;
   public String itemImage;
   public String info;
-
   public AuctionDetailsDTO(Long auctionId, Double startPrice, Double stepPrice, Double currentHighestBid, String currentHighestBidderUsername, String startTime, String endTime, String status, Integer bidCount, Long itemId, String itemName, String tag, String sellerUsername, Long sellerId, String itemImage, String info) {
     this.auctionId = auctionId;
     this.startPrice = startPrice;

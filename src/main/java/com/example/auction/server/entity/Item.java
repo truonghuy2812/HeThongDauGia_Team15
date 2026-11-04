@@ -9,7 +9,7 @@ public class Item implements Serializable {
     private String itemName;
     private String tag;
     private String image;
-
+    private Long  sellerId;
     public Item() {}
 
     public Long getId() { return id; }
@@ -20,7 +20,9 @@ public class Item implements Serializable {
 
     public String getTag() { return tag; }
     public void setTag(String tag) { this.tag = tag; }
-
+    public void setSellerId(Long sellerId) {
+        this.sellerId = sellerId;
+    }
     public String getImage() { return image; }
     public void setImage(String image) { this.image = image; }
 }
