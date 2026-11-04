@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.SVGPath;
 
 public class LoginController {
     @FXML private TextField txtUsername;
@@ -41,5 +42,11 @@ public class LoginController {
     }
     private void goToMainScreen() {
         SceneManager.getInstance().switchScene("/com/example/auction/client/view/MainAfterLogin.fxml", "Trang chủ hệ thống");
+    }
+    @FXML private SVGPath eyeIcon;
+    @FXML
+    public void initialize() {
+        //Kích hoạt tính năng ẩn/hiện mật khẩu qua SceneManager
+        SceneManager.getInstance().setupPasswordToggle(txtPassword, eyeIcon);
     }
 }
