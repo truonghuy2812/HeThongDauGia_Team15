@@ -6,62 +6,70 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #f3f4f6;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.MainAfterLoginController">
+<BorderPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to bottom right, #fffafa, #fce8e9, #f7d6d8);" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.MainAfterLoginController">
 
     <!-- 1. CỘT SIDEBAR BÊN TRÁI -->
     <left>
-        <VBox prefWidth="250.0" style="-fx-background-color: #ffffff; -fx-border-color: #e5e7eb; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+        <VBox prefWidth="250.0" style="-fx-background-color: #ffffff; -fx-border-color: #f2dce0; -fx-border-width: 0 1 0 0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 12, 0, 2, 0);" BorderPane.alignment="CENTER">
             <children>
                 <!-- Logo Góc Trái -->
-                <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+                <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-color: #f2dce0; -fx-border-width: 0 0 1 0;">
                     <padding>
                         <Insets left="24.0" />
                     </padding>
                     <children>
-                        <Label style="-fx-font-family: 'Arial Black'; -fx-font-weight: 900;" text="BTL" textFill="#d31126">
+                        <Label style="-fx-font-weight: bold;" text="BTL" textFill="#d31126">
                             <font>
-                                <Font size="32.0" />
+                                <Font name="System Bold" size="28.0" />
                             </font>
+                        </Label>
+                        <Label text=" AUCTION" textFill="#222222">
+                            <font>
+                                <Font name="System Regular" size="20.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="4.0" top="4.0" />
+                            </HBox.margin>
                         </Label>
                     </children>
                 </HBox>
 
                 <!-- Menu Danh Mục -->
-                <VBox spacing="5.0">
+                <VBox spacing="6.0">
                     <padding>
-                        <Insets top="15.0" />
+                        <Insets left="12.0" right="12.0" top="18.0" />
                     </padding>
                     <children>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent; -fx-text-fill: #d31126; -fx-cursor: hand;" text="🔥  Sản phẩm Đấu giá">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: #fce8e9; -fx-background-radius: 5; -fx-text-fill: #d31126; -fx-font-weight: bold; -fx-cursor: hand;" text="🔥  Sản phẩm Đấu giá">
                             <font>
-                                <Font name="System Bold" size="14.0" />
+                                <Font name="System Bold" size="13.5" />
                             </font>
                             <padding>
-                                <Insets left="24.0" />
+                                <Insets left="16.0" />
                             </padding>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="📱  Đồ điện tử">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="📱  Đồ điện tử">
                             <font>
-                                <Font size="14.0" />
+                                <Font name="System Regular" size="13.5" />
                             </font>
                             <padding>
-                                <Insets left="24.0" />
+                                <Insets left="16.0" />
                             </padding>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="🚗  Xe cộ &amp; Khác">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="🚗  Xe cộ &amp; Khác">
                             <font>
-                                <Font size="14.0" />
+                                <Font name="System Regular" size="13.5" />
                             </font>
                             <padding>
-                                <Insets left="24.0" />
+                                <Insets left="16.0" />
                             </padding>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="👗  Thời trang">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="👗  Thời trang">
                             <font>
-                                <Font size="14.0" />
+                                <Font name="System Regular" size="13.5" />
                             </font>
                             <padding>
-                                <Insets left="24.0" />
+                                <Insets left="16.0" />
                             </padding>
                         </Button>
                     </children>
@@ -71,19 +79,19 @@
                 <Region VBox.vgrow="ALWAYS" />
 
                 <!-- Footer Sidebar -->
-                <VBox spacing="2.0">
+                <VBox spacing="3.0">
                     <padding>
                         <Insets bottom="20.0" left="24.0" />
                     </padding>
                     <children>
-                        <Label text="TEAM 15 © 2026." textFill="#6b7280">
+                        <Label text="TEAM 15 © 2026." textFill="#9ca3af">
                             <font>
-                                <Font size="12.0" />
+                                <Font name="System Regular" size="12.5" />
                             </font>
                         </Label>
-                        <Label text="Hệ thống đấu giá trực tuyến" textFill="#6b7280">
+                        <Label text="Hệ thống đấu giá trực tuyến" textFill="#4b5563">
                             <font>
-                                <Font size="12.0" />
+                                <Font name="System Regular" size="12.5" />
                             </font>
                         </Label>
                     </children>
@@ -94,11 +102,10 @@
 
     <!-- 2. KHU VỰC CHÍNH BÊN PHẢI -->
     <center>
-        <VBox BorderPane.alignment="CENTER">
+        <VBox style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
             <children>
-
-                <!-- Header Trên Cùng -->
-                <HBox alignment="CENTER_RIGHT" prefHeight="70.0" spacing="20.0" style="-fx-background-color: #ffffff; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+                <!-- Header -->
+                <HBox alignment="CENTER_RIGHT" prefHeight="70.0" spacing="18.0" style="-fx-background-color: #ffffff; -fx-border-color: #f2dce0; -fx-border-width: 0 0 1 0;">
                     <padding>
                         <Insets left="30.0" right="30.0" />
                     </padding>
@@ -109,38 +116,41 @@
                             </graphic>
                         </Button>
 
-                        <!-- Thanh tìm kiếm -->
-                        <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="350.0" style="-fx-background-color: #f3f4f6; -fx-background-radius: 20; -fx-padding: 0 15 0 15;">
+                        <!-- Ô tìm kiếm -->
+                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="360.0" spacing="8.0" style="-fx-background-color: #ffffff; -fx-border-color: #d1d5db; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 0 12 0 12;">
                             <children>
-                                <SVGPath content="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" fill="transparent" stroke="#9ca3af" strokeWidth="2.0" />
-                                <TextField fx:id="txtSearch" prefHeight="36.0" promptText="Tìm kiếm sản phẩm..." style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                                <SVGPath content="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" fill="transparent" scaleX="0.85" scaleY="0.85" stroke="#4b5563" strokeWidth="2.0" />
+                                <TextField fx:id="txtSearch" prefHeight="38.0" promptText="Tìm kiếm sản phẩm..." style="-fx-background-color: transparent; -fx-padding: 0; -fx-text-fill: #1f2937;" HBox.hgrow="ALWAYS">
                                     <font>
-                                        <Font size="13.0" />
+                                        <Font name="System Regular" size="13.0" />
                                     </font>
                                 </TextField>
                             </children>
                             <HBox.margin>
-                                <Insets left="15.0" />
+                                <Insets left="10.0" />
                             </HBox.margin>
                         </HBox>
 
                         <Region HBox.hgrow="ALWAYS" />
 
                         <!-- Nút Đăng Bán -->
-                        <Button mnemonicParsing="false" onAction="#goToAddProduct" prefHeight="36.0" style="-fx-background-color: #d31126; -fx-background-radius: 4; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 0 20 0 20;" text="➕  Đăng bán sản phẩm" />
+                        <Button mnemonicParsing="false" onAction="#goToAddProduct" prefHeight="40.0" style="-fx-background-color: #cc0c1a; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 0 20 0 20;" text="➕  Đăng bán sản phẩm">
+                            <font>
+                                <Font size="13.5" />
+                            </font>
+                        </Button>
 
-                        <!-- Icon Thông báo & Tài khoản (Dropdown) -->
+                        <!-- Icon Thông báo & Menu Dropdown -->
                         <HBox alignment="CENTER" spacing="15.0">
                             <children>
-                                <SVGPath content="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" fill="transparent" stroke="#6b7280" strokeWidth="1.5" />
+                                <SVGPath content="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" fill="transparent" stroke="#4b5563" strokeWidth="1.5" />
 
-                                <!-- MenuButton đóng vai trò như Dropdown tài khoản -->
-                                <MenuButton fx:id="userMenuButton" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Người dùng">
+                                <MenuButton fx:id="userMenuButton" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #d1d5db; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Người dùng" textFill="#374151">
                                     <graphic>
-                                        <SVGPath content="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" fill="transparent" stroke="#4b5563" strokeWidth="1.5" />
+                                        <SVGPath content="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" fill="transparent" scaleX="0.85" scaleY="0.85" stroke="#d31126" strokeWidth="1.5" />
                                     </graphic>
                                     <font>
-                                        <Font name="System Regular" size="14.0" />
+                                        <Font name="System Regular" size="13.0" />
                                     </font>
                                     <items>
                                         <MenuItem mnemonicParsing="false" text="Tài khoản" />
@@ -152,17 +162,17 @@
                     </children>
                 </HBox>
 
-                <!-- Khu vực chứa Danh sách sản phẩm -->
-                <VBox spacing="20.0" style="-fx-background-color: #f3f4f6;" VBox.vgrow="ALWAYS">
+                <!-- Vùng sản phẩm -->
+                <VBox spacing="20.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <padding>
                         <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
                     </padding>
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="50.0">
                             <children>
-                                <Label text="Sản phẩm Đấu giá nổi bật" textFill="#1f2937">
+                                <Label text="Sản phẩm Đấu giá nổi bật" textFill="#222222">
                                     <font>
-                                        <Font name="System Regular" size="22.0" />
+                                        <Font name="System Regular" size="24.0" />
                                     </font>
                                 </Label>
                                 <Region HBox.hgrow="ALWAYS" />
