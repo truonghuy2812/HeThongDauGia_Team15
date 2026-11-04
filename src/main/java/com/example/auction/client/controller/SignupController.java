@@ -46,4 +46,11 @@ public class SignupController {
         System.out.println("Chuyển hướng về màn hình Đăng nhập...");
         SceneManager.getInstance().switchScene("/com/example/auction/client/view/login-view.fxml", "Đăng nhập - Team 15");
     }
+    @FXML private javafx.scene.shape.SVGPath eyeIconPass;
+    @FXML private javafx.scene.shape.SVGPath eyeIconConfirm;
+    @FXML
+    public void initialize() {
+        SceneManager.getInstance().setupPasswordToggle(txtPassword, eyeIconPass);
+        SceneManager.getInstance().setupPasswordToggle(txtConfirmPassword, eyeIconConfirm);
+    }
 }
