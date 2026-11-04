@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #f3f4f6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.AdminDepositManager">
+
+    <!-- SIDEBAR BÊN TRÁI -->
+    <left>
+        <VBox prefWidth="280.0" style="-fx-background-color: #ffffff; -fx-border-color: #e5e7eb; -fx-border-width: 0 1 0 0;" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+                    <padding>
+                        <Insets left="24.0" />
+                    </padding>
+                    <children>
+                        <Label style="-fx-font-family: 'Arial Black'; -fx-font-weight: 900;" text="ADMIN" textFill="#d31126">
+                            <font>
+                                <Font size="32.0" />
+                            </font>
+                        </Label>
+                        <Label text=" PANEL" textFill="#1f2937">
+                            <font>
+                                <Font name="Arial Black" size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets top="6.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+
+                <VBox spacing="8.0">
+                    <padding>
+                        <Insets left="15.0" right="15.0" top="20.0" />
+                    </padding>
+                    <children>
+                        <Label text="QUẢN LÝ HỆ THỐNG" textFill="#9ca3af">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="10.0" />
+                            </VBox.margin>
+                        </Label>
+
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#manageApproveAuctions" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: transparent; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="⚖ Duyệt Phiên Đấu Giá">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                            <padding>
+                                <Insets left="20.0" />
+                            </padding>
+                        </Button>
+
+                        <!-- Đang ở màn Duyệt Nạp Tiền nên nút này bôi đỏ -->
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #fee2e2; -fx-text-fill: #d31126; -fx-background-radius: 10; -fx-cursor: hand;" text="💵 Duyệt Lệnh Nạp Tiền">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <padding>
+                                <Insets left="20.0" />
+                            </padding>
+                        </Button>
+                    </children>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <VBox spacing="15.0">
+                    <padding>
+                        <Insets bottom="20.0" left="24.0" right="24.0" />
+                    </padding>
+                    <children>
+                        <Button fx:id="btnLogOut" mnemonicParsing="false" prefHeight="45.0" prefWidth="232.0" style="-fx-background-radius: 8; -fx-cursor: hand;" styleClass="danger" text="🚪 Đăng Xuất">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Button>
+                        <VBox spacing="2.0">
+                            <children>
+                                <Label text="TEAM 15 © 2026." textFill="#9ca3af">
+                                    <font>
+                                        <Font size="12.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- KHU VỰC CHÍNH BÊN PHẢI -->
+    <center>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-background-color: #ffffff; -fx-border-color: #e5e7eb; -fx-border-width: 0 0 1 0;">
+                    <padding>
+                        <Insets left="30.0" right="30.0" />
+                    </padding>
+                    <children>
+                        <Label styleClass="title-3" text="Danh sách lệnh yêu cầu nạp tiền" textFill="#1f2937">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="Quản trị viên" textFill="#4b5563">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                            <graphic>
+                                <SVGPath content="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" fill="transparent" stroke="#4b5563" strokeWidth="1.5" />
+                            </graphic>
+                        </Label>
+                    </children>
+                </HBox>
+
+                <VBox spacing="20.0" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+                    </padding>
+                    <children>
+                        <VBox style="-fx-background-color: white; -fx-background-radius: 12;" styleClass="elevated-2" VBox.vgrow="ALWAYS">
+                            <children>
+                                <TableView fx:id="tblPendingList" style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="colId" prefWidth="120.0" text="Mã Giao Dịch (ID)" />
+                                        <TableColumn fx:id="colAmount" prefWidth="400.0" text="Số Tiền Nạp (VND)" />
+                                        <TableColumn fx:id="colTime" prefWidth="390.0" text="Thời Gian Yêu Cầu" />
+                                    </columns>
+                                    <columnResizePolicy>
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                    </columnResizePolicy>
+                                </TableView>
+                            </children>
+                        </VBox>
+
+                        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                            <children>
+                                <Label fx:id="lblNotification" textFill="#10b981">
+                                    <font>
+                                        <Font name="System Bold" size="13.0" />
+                                    </font>
+                                </Label>
+                                <Button fx:id="btnApprove" mnemonicParsing="false" prefHeight="45.0" prefWidth="180.0" style="-fx-background-radius: 8; -fx-cursor: hand;" styleClass="success" text="✔ Duyệt Nạp Tiền">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
