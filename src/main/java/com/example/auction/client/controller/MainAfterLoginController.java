@@ -3,18 +3,18 @@ package com.example.auction.client.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label; // Thêm thư viện Label để hiện lời chào
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 public class MainAfterLoginController {
     @FXML private TextField txtSearch;
     @FXML private FlowPane productContainer;
     // Thêm một Label trên Scene Builder (nhớ gắn fx:id là lblWelcome) để hiện tên người dùng
-    @FXML private Label lblWelcome;
+    @FXML private MenuButton userMenuButton;
     @FXML
     public void initialize() {
-        // Lấy tên từ thẻ Session và in ra màn hình ngay khi giao diện vừa load xong
-        if (SessionManager.isLoggedIn() && lblWelcome != null) {
-            lblWelcome.setText("Xin chào, " + SessionManager.getCurrentUser() + "!");
+        if (SessionManager.isLoggedIn() && userMenuButton != null) {
+            userMenuButton.setText(SessionManager.getCurrentUser());
         }
 
         // TODO: [BACKEND] - Gọi Socket gửi lệnh yêu cầu Server trả về danh sách Item.
