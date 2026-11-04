@@ -34,13 +34,22 @@
                     </children>
                 </HBox>
 
-                <!-- Menu Danh Mục -->
+                <!-- Menu Danh Mục (Đồng bộ với MainAfterLogin) -->
                 <VBox spacing="6.0">
                     <padding>
                         <Insets left="12.0" right="12.0" top="18.0" />
                     </padding>
                     <children>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: #fce8e9; -fx-background-radius: 5; -fx-text-fill: #d31126; -fx-font-weight: bold; -fx-cursor: hand;" text="🔥  Sản phẩm Đấu giá">
+                        <Label text="ĐIỀU HƯỚNG CHÍNH" textFill="#9ca3af">
+                            <font>
+                                <Font name="System Bold" size="11.5" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="4.0" left="8.0" />
+                            </VBox.margin>
+                        </Label>
+
+                        <Button fx:id="btnNavHome" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#showHomeView" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: #fce8e9; -fx-background-radius: 5; -fx-text-fill: #d31126; -fx-font-weight: bold; -fx-cursor: hand;" text="🏠  Trang chủ">
                             <font>
                                 <Font name="System Bold" size="13.5" />
                             </font>
@@ -48,7 +57,9 @@
                                 <Insets left="16.0" />
                             </padding>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="📱  Đồ điện tử">
+
+                        <!-- Khách bấm vào các nút này sẽ bật cảnh báo Yêu cầu đăng nhập -->
+                        <Button fx:id="btnNavMyBids" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#handleRequiresLogin" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="🔨  Đấu giá của tôi">
                             <font>
                                 <Font name="System Regular" size="13.5" />
                             </font>
@@ -56,7 +67,8 @@
                                 <Insets left="16.0" />
                             </padding>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="🚗  Xe cộ &amp; Khác">
+
+                        <Button fx:id="btnNavMyProducts" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#handleRequiresLogin" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="📦  Sản phẩm của tôi">
                             <font>
                                 <Font name="System Regular" size="13.5" />
                             </font>
@@ -64,7 +76,17 @@
                                 <Insets left="16.0" />
                             </padding>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="👗  Thời trang">
+
+                        <Button fx:id="btnNavWallet" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#handleRequiresLogin" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="💳  Ví &amp; Nạp tiền">
+                            <font>
+                                <Font name="System Regular" size="13.5" />
+                            </font>
+                            <padding>
+                                <Insets left="16.0" />
+                            </padding>
+                        </Button>
+
+                        <Button fx:id="btnNavAccount" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#handleRequiresLogin" prefHeight="44.0" prefWidth="226.0" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="👤  Tài khoản của tôi">
                             <font>
                                 <Font name="System Regular" size="13.5" />
                             </font>
@@ -110,7 +132,7 @@
                         <Insets left="30.0" right="30.0" />
                     </padding>
                     <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;">
+                        <Button mnemonicParsing="false" onAction="#showHomeView" style="-fx-background-color: transparent; -fx-cursor: hand;">
                             <graphic>
                                 <SVGPath content="M4 6h16M4 12h16M4 18h16" stroke="#4b5563" strokeWidth="2.0" />
                             </graphic>
@@ -120,7 +142,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="360.0" spacing="8.0" style="-fx-background-color: #ffffff; -fx-border-color: #d1d5db; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 0 12 0 12;">
                             <children>
                                 <SVGPath content="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" fill="transparent" scaleX="0.85" scaleY="0.85" stroke="#4b5563" strokeWidth="2.0" />
-                                <TextField fx:id="txtSearch" prefHeight="38.0" promptText="Tìm kiếm sản phẩm..." style="-fx-background-color: transparent; -fx-padding: 0; -fx-text-fill: #1f2937;" HBox.hgrow="ALWAYS">
+                                <TextField fx:id="txtSearch" onAction="#handleSearch" prefHeight="38.0" promptText="Tìm kiếm sản phẩm..." style="-fx-background-color: transparent; -fx-padding: 0; -fx-text-fill: #1f2937;" HBox.hgrow="ALWAYS">
                                     <font>
                                         <Font name="System Regular" size="13.0" />
                                     </font>
@@ -147,7 +169,7 @@
                     </children>
                 </HBox>
 
-                <!-- Vùng sản phẩm -->
+                <!-- Vùng sản phẩm (Cho khách chỉ có màn này) -->
                 <VBox spacing="20.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                     <padding>
                         <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
