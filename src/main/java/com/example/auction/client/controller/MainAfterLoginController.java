@@ -116,6 +116,7 @@ public class MainAfterLoginController {
             accountPane.setVisible(false);
             accountPane.setManaged(false);
         }
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/all-added-product.fxml", "");
     }
 
     // 4. Chuyển về mục Ví & Nạp tiền
