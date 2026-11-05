@@ -1,10 +1,18 @@
 package com.example.auction.client.controller;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class MainController {
 
@@ -28,8 +36,92 @@ public class MainController {
         // Mặc định luôn sáng nút Trang chủ cho Khách
         setActiveSidebarButton(btnNavHome);
 
+        // -------------------------------------------------------------
+        // [MỚI THÊM] - NẠP DỮ LIỆU GIẢ VÀO KHUNG CHỨA SẢN PHẨM
+        // -------------------------------------------------------------
+        if (productContainer != null) {
+            loadMockProducts();
+        }
+
         // TODO: [BACKEND] - Gọi Socket lấy danh sách Item từ Server và đổ vào productContainer
         System.out.println("Đã load giao diện trang chủ (Khách) thành công. Đang chờ data từ Server...");
+    }
+
+    // =========================================================================
+    // HÀM MỚI: TẠO THẺ SẢN PHẨM GIẢ (FRONTEND-FIRST)
+    // =========================================================================
+    private void loadMockProducts() {
+        productContainer.getChildren().clear();
+
+        // Định nghĩa 1 mảng dữ liệu giả
+        String[][] mockData = {
+                {"1", "Đồng hồ Rolex Submariner", "150,000,000 VND", "Đang diễn ra"},
+                {"2", "iPhone 15 Pro Max 256GB", "25,000,000 VND", "Đang diễn ra"},
+                {"3", "Xe máy SH 150i 2024", "95,000,000 VND", "Sắp kết thúc"},
+                {"4", "MacBook Pro M3 14-inch", "38,000,000 VND", "Đang diễn ra"},
+                {"5", "Voucher Du lịch Phú Quốc", "5,000,000 VND", "Đang diễn ra"},
+                {"6", "Tai nghe AirPods Pro 2", "4,500,000 VND", "Sắp kết thúc"}
+        };
+
+        // Lặp qua mảng để tạo từng cái thẻ (Card)
+        for (String[] data : mockData) {
+            String itemId = data[0];
+            String itemName = data[1];
+            String currentPrice = data[2];
+            String status = data[3];
+
+            VBox card = new VBox();
+            card.setPrefSize(240, 320);
+            card.setSpacing(10);
+            card.setPadding(new Insets(15));
+            card.setStyle("-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-cursor: hand;");
+
+            DropShadow shadow = new DropShadow();
+            shadow.setColor(Color.rgb(0, 0, 0, 0.1));
+            shadow.setRadius(10);
+            shadow.setOffsetY(2);
+            card.setEffect(shadow);
+
+            VBox imagePlaceholder = new VBox();
+            imagePlaceholder.setPrefSize(210, 160);
+            imagePlaceholder.setAlignment(Pos.CENTER);
+            imagePlaceholder.setStyle("-fx-background-color: #e5e7eb; -fx-background-radius: 8;");
+            Label lblImgTxt = new Label("🖼️ Ảnh sản phẩm");
+            lblImgTxt.setTextFill(Color.web("#9ca3af"));
+            imagePlaceholder.getChildren().add(lblImgTxt);
+
+            Label lblName = new Label(itemName);
+            lblName.setFont(Font.font("System", FontWeight.BOLD, 15));
+            lblName.setTextFill(Color.web("#1f2937"));
+            lblName.setWrapText(true);
+
+            Label lblPriceTitle = new Label("Giá hiện tại:");
+            lblPriceTitle.setFont(Font.font("System", 12));
+            lblPriceTitle.setTextFill(Color.web("#6b7280"));
+
+            Label lblPrice = new Label(currentPrice);
+            lblPrice.setFont(Font.font("System", FontWeight.BOLD, 16));
+            lblPrice.setTextFill(Color.web("#d31126"));
+
+            Button btnAction = new Button("Thực hiện Đấu giá");
+            btnAction.setPrefWidth(210);
+            btnAction.setStyle("-fx-background-color: #d31126; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;");
+
+            // XỬ LÝ SỰ KIỆN: Click vào xem chi tiết
+            card.setOnMouseClicked(e -> goToDetail(itemId, itemName));
+            btnAction.setOnAction(e -> goToDetail(itemId, itemName));
+
+            card.getChildren().addAll(imagePlaceholder, lblName, lblPriceTitle, lblPrice, btnAction);
+            productContainer.getChildren().add(card);
+        }
+    }
+
+    // =========================================================================
+    // HÀM MỚI: CHUYỂN TRANG SANG CHI TIẾT SẢN PHẨM
+    // =========================================================================
+    private void goToDetail(String itemId, String itemName) {
+        System.out.println("Đang mở chi tiết sản phẩm ID: " + itemId + " - " + itemName);
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/detail-view.fxml", "Chi tiết: " + itemName);
     }
 
     // Hàm đổi màu nút (cho Khách thì chỉ sáng nút Home, các nút khác bấm vào sẽ báo lỗi)
