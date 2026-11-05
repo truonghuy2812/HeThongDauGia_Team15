@@ -25,9 +25,9 @@ public class AuctionClientApp extends Application {
             AuctionClientSocket.getInstance().closeConnection();
             System.exit(0);
         });
-/*
-        stage.setFullScreen(true);
-*/
+
+/*        stage.setFullScreen(true);*/
+
         stage.show();
     }
     public static void main(String[] args) {

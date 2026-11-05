@@ -32,7 +32,7 @@ public class SceneManager {
         return primaryStage;
     }
     //skibidi
-    /*public void switchTo(Stage stage, String fxmlPath)
+    public void switchTo(Stage stage, String fxmlPath)
     {
         try {
             boolean wasFull = stage.isFullScreen();
@@ -58,7 +58,6 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
-*/
     // 3. HÀM CHUYỂN CẢNH DÙNG CHUNG
     public void switchScene(String fxmlPath, String title, double width, double height) {
         if (primaryStage == null) {

@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to bottom right, #fffafa, #fce8e9, #f7d6d8);" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.MainController">
+<BorderPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to bottom right, #fffafa, #fce8e9, #f7d6d8);" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.MainController">
 
     <!-- 1. CỘT SIDEBAR BÊN TRÁI -->
     <left>
@@ -18,12 +25,12 @@
                         <Insets left="24.0" />
                     </padding>
                     <children>
-                        <Label style="-fx-font-weight: bold;" text="BTL" textFill="#d31126">
+                        <Label style="-fx-font-weight: bold;" text="TEAM 15" textFill="#d31126">
                             <font>
                                 <Font name="System Bold" size="28.0" />
                             </font>
                         </Label>
-                        <Label text=" AUCTION" textFill="#222222">
+                        <Label textFill="#222222">
                             <font>
                                 <Font name="System Regular" size="20.0" />
                             </font>
