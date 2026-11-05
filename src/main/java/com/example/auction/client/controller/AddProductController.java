@@ -56,6 +56,7 @@ public class AddProductController {
         System.out.println("Mô tả: " + description);
         System.out.println("File ảnh: " + selectedImageFile.getAbsolutePath());
 
+
         SceneManager.getInstance().showAlert(AlertType.INFORMATION, "Thành công", "Đăng bán sản phẩm thành công! (Giả lập)");
 
         // Đăng bán xong tự động quay về trang chủ
