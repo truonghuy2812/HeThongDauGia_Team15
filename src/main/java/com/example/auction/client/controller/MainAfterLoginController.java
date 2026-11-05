@@ -8,6 +8,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MainAfterLoginController {
 
@@ -102,7 +103,8 @@ public class MainAfterLoginController {
             accountPane.setManaged(false);
         }
     }
-
+/*    @FXML
+    private Button button;*/
     // 3. Chuyển về mục Sản phẩm của tôi
     @FXML
     private void showMyProductsView() {
@@ -116,6 +118,9 @@ public class MainAfterLoginController {
             accountPane.setVisible(false);
             accountPane.setManaged(false);
         }
+
+        /*Stage curStage = (Stage) button.getScene().getWindow();
+        SceneManager.getInstance().switchTo(curStage,"/com/example/auction/client/view/all-added-product.fxml");*/
         SceneManager.getInstance().switchScene("/com/example/auction/client/view/all-added-product.fxml", "");
     }
 
