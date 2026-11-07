@@ -1,9 +1,13 @@
 package com.example.auction.client.controller;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class SceneManager {
     // 1. ÁP DỤNG SINGLETON PATTERN
@@ -27,7 +31,33 @@ public class SceneManager {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+    //skibidi
+    public void switchTo(Stage stage, String fxmlPath)
+    {
+        try {
+            boolean wasFull = stage.isFullScreen();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent newRoot = loader.load();
+            Scene curScene = stage.getScene();
 
+            if (curScene != null)
+            {
+                curScene.setRoot(newRoot);
+            }
+            else
+            {
+                stage.setScene(new Scene(newRoot));
+            }
+
+            if (wasFull) {
+                stage.setFullScreen(true);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
     // 3. HÀM CHUYỂN CẢNH DÙNG CHUNG
     public void switchScene(String fxmlPath, String title, double width, double height) {
         if (primaryStage == null) {
@@ -49,7 +79,6 @@ public class SceneManager {
     public void switchScene(String fxmlPath, String title) {
         switchScene(fxmlPath, title, 1000, 600);
     }
-
     // Nâng cấp: Cho phép truyền vào loại thông báo
     public void showAlert(Alert.AlertType type, String title, String content) {
         Alert alert = new Alert(type);
