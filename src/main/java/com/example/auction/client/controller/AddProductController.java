@@ -1,5 +1,6 @@
 package com.example.auction.client.controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -8,20 +9,35 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import java.io.File;
+import java.io.ObjectOutputStream;
 
-public class AddProductController {
+// TODO: Mở comment các import này khi ghép Backend
+// import com.example.auction.client.clientnetworkmanager.AuctionClientSocket;
+// import com.example.auction.shared.dto.MessageProtocol;
+// import com.example.auction.shared.dto.ItemDTO;
 
+public class AddProductController /* implements MessageHandler */ {
+
+    // =========================================================================
+    // PHẦN 1: LÃNH ĐỊA CỦA FRONTEND (UI COMPONENTS - CHUẨN GIAO DIỆN CỦA ÔNG)
+    // =========================================================================
     @FXML private TextField itemName;
     @FXML private MenuButton menuButton;
     @FXML private TextArea infoText;
     @FXML private AnchorPane showInfo;
     @FXML private Button btnback;
 
-    private File selectedImageFile; // Biến lưu trữ file ảnh
+    private File selectedImageFile;
 
+    // =========================================================================
+    // PHẦN 2: KHỞI TẠO VÀ ĐĂNG KÝ MẠNG
+    // =========================================================================
     @FXML
     public void initialize() {
-        // TỐI ƯU UI: Tự động cập nhật chữ trên MenuButton khi người dùng chọn 1 danh mục
+        // TODO: Đăng ký nhận tin nhắn từ Server (Mở comment khi có Backend)
+        // AuctionClientSocket.getInstance().setMessageHandler(this);
+
+        // Tự động cập nhật chữ trên MenuButton khi chọn danh mục
         if (menuButton != null) {
             for (MenuItem item : menuButton.getItems()) {
                 item.setOnAction(event -> menuButton.setText(item.getText()));
@@ -29,14 +45,17 @@ public class AddProductController {
         }
     }
 
+    // =========================================================================
+    // PHẦN 3: FRONTEND GỬI DỮ LIỆU CHO BACKEND (ACTION - TÁCH LUỒNG)
+    // =========================================================================
     @FXML
     private void addItem() {
+        // 1. Frontend lấy dữ liệu thô và validate
         String productName = itemName.getText();
         String description = infoText.getText();
         String category = menuButton.getText();
-        String seller = SessionManager.getCurrentUser(); // Lấy tên người đăng từ thẻ Session
+        String seller = SessionManager.getCurrentUser();
 
-        // 1. KIỂM TRA NHẬP LIỆU (FRONTEND)
         if (productName == null || productName.trim().isEmpty()) {
             SceneManager.getInstance().showAlert(AlertType.WARNING, "Thiếu thông tin", "Vui lòng nhập tên sản phẩm!");
             return;
@@ -47,22 +66,64 @@ public class AddProductController {
             return;
         }
 
-        // TODO: [BACKEND] - Chuyển file ảnh (selectedImageFile) thành mảng byte[] hoặc chuỗi Base64.
-        // TODO: [BACKEND] - Đóng gói (productName, category, description, seller, imageBytes) vào ItemDTO và bắn qua Socket.
-        System.out.println("--- THÔNG TIN SẢN PHẨM MỚI ---");
-        System.out.println("Người bán: " + seller);
-        System.out.println("Tên SP: " + productName);
-        System.out.println("Danh mục: " + category);
-        System.out.println("Mô tả: " + description);
-        System.out.println("File ảnh: " + selectedImageFile.getAbsolutePath());
+        // 2. Mở luồng mạng (Thread) để không làm đơ giao diện
+        Thread networkThread = new Thread(() -> {
+            try {
+                // TODO: [BACKEND] - Mở khối code này khi ghép mạng
+                /*
+                synchronized (AuctionClientSocket.getInstance()) {
+                    // Chuyển selectedImageFile thành byte[] và gói vào DTO
+                    ItemDTO dto = new ItemDTO(productName, category, description, seller, null);
+                    MessageProtocol request = new MessageProtocol("ADD_PRODUCT", dto, null, null);
 
+                    ObjectOutputStream out = AuctionClientSocket.getInstance().getOut();
+                    out.writeObject(request);
+                    out.flush();
+                }
+                */
 
-        SceneManager.getInstance().showAlert(AlertType.INFORMATION, "Thành công", "Đăng bán sản phẩm thành công! (Giả lập)");
+                // --- TEST MÔ PHỎNG FRONTEND (Không có mạng) ---
+                System.out.println("Đang gửi DTO lên Server... Tên SP: " + productName);
+                Thread.sleep(1500); // Giả lập chờ mạng 1.5 giây
 
-        // Đăng bán xong tự động quay về trang chủ
-        back();
+                // Cập nhật UI phải bọc trong Platform.runLater
+                Platform.runLater(() -> {
+                    SceneManager.getInstance().showAlert(AlertType.INFORMATION, "Thành công", "Đăng bán sản phẩm thành công!");
+                    back(); // Quay về trang chủ
+                });
+                // ----------------------------------------------
+
+            } catch (Exception e) {
+                Platform.runLater(() -> {
+                    SceneManager.getInstance().showAlert(AlertType.ERROR, "Lỗi kết nối", "Không thể kết nối đến Server!");
+                });
+            }
+        });
+        networkThread.setDaemon(true);
+        networkThread.start();
     }
 
+    // =========================================================================
+    // PHẦN 4: BACKEND TRẢ KẾT QUẢ CHO FRONTEND (CALLBACK)
+    // Nơi duy nhất xử lý phản hồi từ Server (Đang comment chờ Backend)
+    // =========================================================================
+    /*
+    @Override
+    public void onMessageReceived(MessageProtocol response) {
+        Platform.runLater(() -> {
+            if ("SUCCESS".equals(response.status())) {
+                SceneManager.getInstance().showAlert(AlertType.INFORMATION, "Thành công", "Sản phẩm đã được đưa vào hàng đợi duyệt!");
+                back();
+            } else if ("ERROR".equals(response.status())) {
+                SceneManager.getInstance().showAlert(AlertType.ERROR, "Thất bại", response.message());
+            }
+        });
+    }
+    */
+
+    // =========================================================================
+    // CÁC HÀM XỬ LÝ SỰ KIỆN GIAO DIỆN KHÁC (UI EVENTS)
+    // =========================================================================
     @FXML
     private void handlePickImage() {
         FileChooser fileChooser = new FileChooser();
@@ -71,16 +132,12 @@ public class AddProductController {
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
         );
 
-        // TỐI ƯU: Lấy trực tiếp cửa sổ chính từ SceneManager thay vì ép kiểu từ menuButton
         selectedImageFile = fileChooser.showOpenDialog(SceneManager.getInstance().getPrimaryStage());
 
-        // Xử lý hiển thị ảnh xem trước (Preview) sau khi chọn
         if (selectedImageFile != null) {
-            System.out.println("Đã load ảnh thành công: " + selectedImageFile.getName());
             Image image = new Image(selectedImageFile.toURI().toString());
             ImageView imageView = new ImageView(image);
 
-            // Căn chỉnh kích thước ảnh vừa với khung showInfo
             imageView.setFitWidth(showInfo.getPrefWidth() > 0 ? showInfo.getPrefWidth() : 350);
             imageView.setFitHeight(showInfo.getPrefHeight() > 0 ? showInfo.getPrefHeight() : 350);
             imageView.setPreserveRatio(true);
