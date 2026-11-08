@@ -19,7 +19,7 @@ public class BidService {
     private static final Logger log = LoggerFactory.getLogger(BidService.class);
     private final AuctionService auctionService = new AuctionService();
 
-    // Đưa lock quản lý đồng bộ (Concurrency) vào Service để tái sử dụng ở mọi nơi
+    // Đưa lock quản lý đồng bộ (Concurrency) vào service để tái sử dụng ở mọi nơi
     private static final ConcurrentHashMap<Long, Object> auctionLocks = new ConcurrentHashMap<>();
 
     // Hàm chính, trả về PaymentAccountDTO để Handler gửi lại cho Client
