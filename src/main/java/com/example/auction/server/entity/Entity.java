@@ -41,6 +41,10 @@ public abstract class Entity implements Serializable {  // import xog còn phả
         this.id = id;
         this.updatedAt = updatedAt;
     }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
     // GETTER & SETTER
 
     public Long getId() {
@@ -50,11 +54,6 @@ public abstract class Entity implements Serializable {  // import xog còn phả
     public void setId(Long id) { //  Set id - thường dùng khi load từ DataBase
         this.id = id;
     }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
     public void setCreatedAt(Instant createdAt) { // Set createdAt - thường không nên thay đổi sau khi tạo
         // nhưng giữ public để linh hoạt (ví dụ copy constructor)
         this.createdAt = createdAt;
