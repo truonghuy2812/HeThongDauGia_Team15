@@ -12,7 +12,7 @@ public class ItemFactory {
         switch (tag.toUpperCase()) {
             case "ELECTRONIC":
                 // Nếu nhóm có class ElectronicItem kế thừa Item
-                return new ElectronicItem();
+                return new ElectronicsItem();
             case "ART":
                 // Nếu nhóm có class ArtItem kế thừa Item
                 return new ArtItem();

@@ -1,4 +1,4 @@
 package com.example.auction.server.entity;
 
-public class ElectronicsItem {
+public class ElectronicsItem extends Item {
 }

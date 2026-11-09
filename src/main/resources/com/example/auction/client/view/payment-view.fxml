@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to bottom right, #fffafa, #fce8e9, #f7d6d8);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.auction.client.controller.PaymentController">
+
+    <!-- SIDEBAR BÊN TRÁI -->
+    <left>
+        <VBox prefWidth="250.0" style="-fx-background-color: #ffffff; -fx-border-color: #f2dce0; -fx-border-width: 0 1 0 0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 12, 0, 2, 0);" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-color: #f2dce0; -fx-border-width: 0 0 1 0;">
+                    <padding><Insets left="24.0" /></padding>
+                    <children>
+                        <Label prefHeight="40.0" prefWidth="156.0" style="-fx-font-weight: bold;" text="TEAM 15" textFill="#d31126"><font><Font name="System Bold" size="28.0" /></font></Label>
+                    </children>
+                </HBox>
+
+                <VBox spacing="6.0">
+                    <padding><Insets left="12.0" right="12.0" top="18.0" /></padding>
+                    <children>
+                        <Label text="ĐIỀU HƯỚNG CHÍNH" textFill="#9ca3af"><font><Font name="System Bold" size="11.5" /></font><VBox.margin><Insets bottom="4.0" left="8.0" /></VBox.margin></Label>
+
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#goToMain" prefHeight="44.0" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="🏠  Trang chủ">
+                            <font><Font name="System Regular" size="13.5" /></font><padding><Insets left="16.0" /></padding>
+                        </Button>
+
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#goToMyBids" prefHeight="44.0" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="🔨  Đấu giá của tôi">
+                            <font><Font name="System Regular" size="13.5" /></font><padding><Insets left="16.0" /></padding>
+                        </Button>
+
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#goToMyProducts" prefHeight="44.0" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="📦  Sản phẩm của tôi">
+                            <font><Font name="System Regular" size="13.5" /></font><padding><Insets left="16.0" /></padding>
+                        </Button>
+
+                        <!-- Nút Ví & Nạp Tiền Active -->
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="44.0" maxWidth="Infinity" style="-fx-background-color: #fce8e9; -fx-background-radius: 5; -fx-text-fill: #d31126; -fx-font-weight: bold; -fx-cursor: hand;" text="💳  Ví &amp; Nạp tiền">
+                            <font><Font name="System Bold" size="13.5" /></font><padding><Insets left="16.0" /></padding>
+                        </Button>
+
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" onAction="#goToAccount" prefHeight="44.0" maxWidth="Infinity" style="-fx-background-color: transparent; -fx-background-radius: 5; -fx-text-fill: #4b5563; -fx-cursor: hand;" text="👤  Tài khoản của tôi">
+                            <font><Font name="System Regular" size="13.5" /></font><padding><Insets left="16.0" /></padding>
+                        </Button>
+                    </children>
+                </VBox>
+                <Region VBox.vgrow="ALWAYS" />
+                <VBox spacing="3.0">
+                    <padding><Insets bottom="20.0" left="24.0" /></padding>
+                    <children>
+                        <Label text="TEAM 15 © 2026." textFill="#9ca3af"><font><Font name="System Regular" size="12.5" /></font></Label>
+                        <Label text="Hệ thống đấu giá trực tuyến" textFill="#4b5563"><font><Font name="System Regular" size="12.5" /></font></Label>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+
+    <!-- KHU VỰC CHÍNH -->
+    <center>
+        <VBox style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+            <children>
+                <!-- Header -->
+                <HBox alignment="CENTER_RIGHT" prefHeight="70.0" spacing="18.0" style="-fx-background-color: #ffffff; -fx-border-color: #f2dce0; -fx-border-width: 0 0 1 0;">
+                    <padding><Insets left="30.0" right="30.0" /></padding>
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="360.0" spacing="8.0" style="-fx-background-color: #ffffff; -fx-border-color: #d1d5db; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 0 12 0 12;">
+                            <children>
+                                <SVGPath content="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" fill="transparent" scaleX="0.85" scaleY="0.85" stroke="#4b5563" strokeWidth="2.0" />
+                                <TextField prefHeight="38.0" promptText="Tìm kiếm sản phẩm..." style="-fx-background-color: transparent; -fx-padding: 0; -fx-text-fill: #1f2937;" HBox.hgrow="ALWAYS"><font><Font name="System Regular" size="13.0" /></font></TextField>
+                            </children>
+                            <HBox.margin><Insets left="10.0" /></HBox.margin>
+                        </HBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #cc0c1a; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 0 20 0 20;" text="➕  Đăng bán sản phẩm"><font><Font size="13.5" /></font></Button>
+                        <HBox alignment="CENTER" spacing="15.0">
+                            <children>
+                                <SVGPath content="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" fill="transparent" stroke="#4b5563" strokeWidth="1.5" />
+                                <MenuButton fx:id="userMenuButton" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-border-color: #d1d5db; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Người dùng" textFill="#374151">
+                                    <graphic><SVGPath content="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" fill="transparent" scaleX="0.85" scaleY="0.85" stroke="#d31126" strokeWidth="1.5" /></graphic>
+                                    <font><Font name="System Regular" size="13.0" /></font>
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#goToAccount" text="Tài khoản của tôi" />
+                                        <MenuItem mnemonicParsing="false" onAction="#LogoutAction" text="Đăng xuất" />
+                                    </items>
+                                </MenuButton>
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+
+                <!-- VÙNG NỘI DUNG CHÍNH (FORM NẠP TIỀN ĐÃ CHIA 2 CỘT) -->
+                <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                    <padding><Insets bottom="30.0" left="40.0" right="40.0" top="30.0" /></padding>
+                    <children>
+                        <Label text="VÍ ĐIỆN TỬ &amp; NẠP TIỀN" textFill="#222222">
+                            <font>
+                                <Font name="System Bold" size="28.0" />
+                            </font>
+                            <VBox.margin><Insets bottom="20.0" /></VBox.margin>
+                        </Label>
+
+                        <!-- CHIA ĐÔI MÀN HÌNH BẰNG HBOX -->
+                        <HBox alignment="CENTER" spacing="50.0">
+
+                            <!-- CỘT TRÁI: MÃ QR BẢN TO -->
+                            <VBox alignment="CENTER" prefWidth="350.0" spacing="15.0" style="-fx-background-color: #ffffff; -fx-border-color: #f2dce0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 15, 0, 0, 5); -fx-padding: 25;">
+                                <Label text="Quét mã QR để chuyển khoản" textFill="#4b5563">
+                                    <font>
+                                        <Font name="System Bold" size="16.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="320.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@/Imagine/QR-Imagine.jfif" />
+                                    </image>
+                                </ImageView>
+                                <Label text="Ngân hàng Admin - 123456789" textFill="#d31126">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                            </VBox>
+
+                            <!-- CỘT PHẢI: FORM NHẬP TIỀN -->
+                            <VBox alignment="CENTER" prefWidth="480.0" spacing="30.0">
+
+                                <!-- Box hiển thị Số dư -->
+                                <VBox alignment="CENTER" prefHeight="160.0" maxWidth="Infinity" style="-fx-background-color: #ffffff; -fx-border-color: #f2dce0; -fx-border-radius: 12; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 15, 0, 0, 5);">
+                                    <Label text="Số dư khả dụng" textFill="#6b7280">
+                                        <font>
+                                            <Font name="System Bold" size="16.0" />
+                                        </font>
+                                    </Label>
+                                    <Label fx:id="lblBalance" text="0 VNĐ" textFill="#d31126">
+                                        <font>
+                                            <Font name="System Bold" size="46.0" />
+                                        </font>
+                                        <VBox.margin>
+                                            <Insets top="10.0" />
+                                        </VBox.margin>
+                                    </Label>
+                                </VBox>
+
+                                <!-- Khu vực nhập tiền -->
+                                <VBox alignment="CENTER_LEFT" spacing="12.0">
+                                    <Label text="Nhập số tiền muốn nạp (VNĐ):" textFill="#374151">
+                                        <font>
+                                            <Font name="System Bold" size="15.0" />
+                                        </font>
+                                    </Label>
+                                    <TextField fx:id="txtDepositAmount" prefHeight="55.0" promptText="Nhập số tiền (VD: 500000)" style="-fx-font-size: 16px; -fx-background-radius: 8; -fx-border-color: #d1d5db; -fx-border-radius: 8; -fx-background-color: #ffffff;" />
+                                    <Label text="* Lưu ý: Tiền sẽ được cộng vào ví sau khi Admin xác nhận." textFill="#ef4444">
+                                        <font>
+                                            <Font name="System Italic" size="13.0" />
+                                        </font>
+                                    </Label>
+                                </VBox>
+
+                                <!-- Nút Gửi Yêu Cầu -->
+                                <Button mnemonicParsing="false" onAction="#handleDepositRequest" prefHeight="55.0" maxWidth="Infinity" style="-fx-background-color: #cc0c1a; -fx-text-fill: white; -fx-background-radius: 8; -fx-cursor: hand;" text="GỬI YÊU CẦU NẠP">
+                                    <font>
+                                        <Font name="System Bold" size="18.0" />
+                                    </font>
+                                </Button>
+
+                            </VBox>
+                        </HBox>
+
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
