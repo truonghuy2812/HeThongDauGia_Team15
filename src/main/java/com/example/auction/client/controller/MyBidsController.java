@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -50,11 +51,10 @@ public class MyBidsController /* implements MessageHandler */ {
      * Cấu hình cách hiển thị dữ liệu cho từng cột trong TableView
      */
     private void setupTableColumns() {
-        // Cột ID và Tên Sản Phẩm
         colId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         colProductName.setCellValueFactory(cellData -> cellData.getValue().productNameProperty());
 
-        // Format tiền tệ cho cột Giá tôi đặt (Thêm dấu chấm phân cách hàng nghìn)
+        // Format tiền tệ cho cột Giá tôi đặt
         colMyBidPrice.setCellValueFactory(cellData -> cellData.getValue().myBidPriceProperty().asObject());
         colMyBidPrice.setCellFactory(tc -> new TableCell<BidViewModel, Double>() {
             @Override
@@ -64,6 +64,7 @@ public class MyBidsController /* implements MessageHandler */ {
                     setText(null);
                 } else {
                     setText(String.format("%,.0f VNĐ", price));
+                    setAlignment(Pos.CENTER);
                 }
             }
         });
@@ -78,6 +79,7 @@ public class MyBidsController /* implements MessageHandler */ {
                     setText(null);
                 } else {
                     setText(String.format("%,.0f VNĐ", price));
+                    setAlignment(Pos.CENTER);
                 }
             }
         });
@@ -93,9 +95,11 @@ public class MyBidsController /* implements MessageHandler */ {
                     setStyle("");
                 } else {
                     setText(status);
-                    if (status.contains("Dẫn đầu") || status.contains("Đã thắng")) {
+                    setAlignment(Pos.CENTER);
+                    String lower = status.toLowerCase();
+                    if (lower.contains("dẫn đầu") || lower.contains("đã thắng")) {
                         setStyle("-fx-text-fill: #16a34a; -fx-font-weight: bold;"); // Xanh lá
-                    } else if (status.contains("Bị vượt giá")) {
+                    } else if (lower.contains("bị vượt giá")) {
                         setStyle("-fx-text-fill: #dc2626; -fx-font-weight: bold;"); // Đỏ
                     } else {
                         setStyle("-fx-text-fill: #4b5563;"); // Xám
@@ -110,7 +114,6 @@ public class MyBidsController /* implements MessageHandler */ {
     // =========================================================================
     private void loadMyBidsData() {
         // TODO: [BACKEND] - Tạo Request DTO yêu cầu Server trả về danh sách lịch sử đấu giá của currentUser
-        // Đẩy Socket vào Thread riêng để không làm treo giao diện.
 
         // --- Dữ liệu Giả lập (Test UI khi chưa có Backend) ---
         bidList.clear();
@@ -126,7 +129,6 @@ public class MyBidsController /* implements MessageHandler */ {
     /*
     @Override
     public void onMessageReceived(MessageProtocol response) {
-        // Luôn bọc trong Platform.runLater khi tương tác với UI từ Thread mạng
         Platform.runLater(() -> {
             if ("SUCCESS".equals(response.status())) {
                 // Parse danh sách BidDTO từ response.data() và đưa vào mảng bidList
@@ -171,7 +173,6 @@ public class MyBidsController /* implements MessageHandler */ {
 
     // =========================================================================
     // LỚP VIEWMODEL NỘI BỘ (Chỉ dùng cho TableView UI)
-    // Lớp này dùng để bọc dữ liệu, giúp TableView tự động cập nhật nếu dữ liệu thay đổi
     // =========================================================================
     public static class BidViewModel {
         private final SimpleIntegerProperty id;
