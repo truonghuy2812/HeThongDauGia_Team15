@@ -3,7 +3,10 @@ package com.example.auction.server.entity;
 import java.time.Instant;
 import java.util.Objects;
 
-public class Bid extends Entity{
+/**
+ * Lớp Bid đại diện cho MỘT lần đặt giá trong một phiên đấu giá.
+ */
+public class Bid extends Entity {
     private Long auctionId;      // ID của buổi đấu giá
     private User bidder;         // Đối tượng người đặt giá
     private double amount;       // Số tiền đặt

@@ -47,4 +47,3 @@ class SellerProfile implements Serializable {
         this.shopRating = (this.shopRating + newRating) / 2.0 ;
     }
 }
-

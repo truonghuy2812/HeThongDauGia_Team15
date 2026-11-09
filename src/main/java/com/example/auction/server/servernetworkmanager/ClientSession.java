@@ -83,8 +83,22 @@ public class ClientSession implements Runnable {
      * handleMessage - Nơi phân luồng xử lý gói tin
      */
     private void handleMessage(MessageProtocol msg) {
-        // TODO: Nhóm 15 tự code logic gọi Handler tương ứng với msg.type() tại đây
         System.out.println("Đã nhận tin nhắn loại: " + msg.type());
+
+        try {
+            switch (msg.type()) {
+                case "LOGIN":
+                    new com.example.auction.server.handlers.LoginHandler().handle(this, msg, currentUserSession);
+                    break;
+                case "SIGNUP":
+                    new com.example.auction.server.handlers.SignupHandler().handle(this, msg, currentUserSession);
+                    break;
+                default:
+                    log.warn("Không tìm thấy Handler cho loại tin nhắn: " + msg.type());
+            }
+        } catch (Exception e) {
+            log.error("Lỗi khi xử lý tin nhắn loại " + msg.type(), e);
+        }
     }
 
     /**

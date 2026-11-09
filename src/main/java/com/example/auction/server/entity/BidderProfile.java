@@ -59,4 +59,3 @@ class BidderProfile implements Serializable {
         return false; // kh đủ tiền
     }
 }
-
