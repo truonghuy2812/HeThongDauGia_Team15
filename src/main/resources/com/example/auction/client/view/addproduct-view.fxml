@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -23,12 +24,11 @@
             fx:controller="com.example.auction.client.controller.AddProductController">
 
     <!-- HEADER -->
-    <!-- HEADER -->
     <top>
         <HBox alignment="CENTER_RIGHT"
               prefHeight="70.0"
               spacing="18.0"
-              style="-fx-background-color: #ffffff; -fx-border-color: #f2dce0; -fx-border-width: 0 0 1 0;">
+              style="-fx-background-color: #ffffff; -fx-border-color: #f2dce0; -fx-border-width: 0 0 1 0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.02), 10, 0, 0, 2);">
 
             <padding>
                 <Insets left="30.0" right="30.0"/>
@@ -48,7 +48,7 @@
                         mnemonicParsing="false"
                         onAction="#back"
                         prefHeight="40.0"
-                        style="-fx-background-color: #ffffff; -fx-border-color: #d31126; -fx-border-radius: 5; -fx-background-radius: 5; -fx-text-fill: #d31126; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 0 20 0 20;"
+                        style="-fx-background-color: transparent; -fx-border-color: #d31126; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #d31126; -fx-font-weight: bold; -fx-cursor: hand; -fx-padding: 0 20 0 20; -fx-border-width: 1.5;"
                         text="⬅  Quay lại">
                     <font>
                         <Font size="13.0"/>
@@ -58,222 +58,165 @@
         </HBox>
     </top>
 
-    <!-- KHU VỰC NỘI DUNG CHÍNH -->
+    <!-- KHU VỰC NỘI DUNG CHÍNH (ĐƯỢC BỌC TRONG SCROLLPANE) -->
     <center>
-        <HBox spacing="24.0">
-
-            <padding>
-                <Insets bottom="25.0" left="35.0" right="35.0" top="25.0"/>
-            </padding>
-
-            <children>
-
-                <!-- FORM ĐĂNG SẢN PHẨM -->
-                <VBox prefWidth="460.0"
-                      spacing="12.0"
-                      style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #f2dce0; -fx-border-radius: 10;">
-
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent; -fx-border-color: transparent;">
+            <content>
+                <HBox alignment="CENTER" spacing="30.0">
                     <padding>
-                        <Insets bottom="22.0" left="25.0" right="25.0" top="22.0"/>
+                        <Insets bottom="35.0" left="40.0" right="40.0" top="35.0"/>
                     </padding>
-
                     <children>
+                        <!-- FORM ĐĂNG SẢN PHẨM BÊN TRÁI -->
+                        <VBox maxWidth="550.0" prefWidth="500.0" spacing="15.0"
+                              style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 15, 0, 0, 4);"
+                              HBox.hgrow="ALWAYS">
 
-                        <Label text="Đăng Bán Sản Phẩm Mới"
-                               textFill="#d31126">
-                            <font>
-                                <Font name="System Bold" size="21.0"/>
-                            </font>
-                        </Label>
-
-                        <Label text="Vui lòng cung cấp chi tiết thông tin vật phẩm đấu giá"
-                               textFill="#64748b">
-                            <font>
-                                <Font size="12.0"/>
-                            </font>
-                        </Label>
-
-                        <Separator style="-fx-background-color: #f2dce0;"/>
-
-                        <!-- TÊN SẢN PHẨM -->
-                        <VBox spacing="5.0">
-                            <children>
-
-                                <Label text="Tên sản phẩm *"
-                                       textFill="#334155">
-                                    <font>
-                                        <Font name="System Bold" size="12.0"/>
-                                    </font>
-                                </Label>
-
-                                <TextField fx:id="itemName"
-                                           prefHeight="38.0"
-                                           promptText="Ví dụ: Đồng hồ Rolex Submariner..."
-                                           style="-fx-background-radius: 6; -fx-border-color: #d1d5db; -fx-border-radius: 6;"/>
-
-                            </children>
-                        </VBox>
-
-                        <!-- DANH MỤC -->
-                        <VBox spacing="5.0">
-                            <children>
-
-                                <Label text="Danh mục sản phẩm *"
-                                       textFill="#334155">
-                                    <font>
-                                        <Font name="System Bold" size="12.0"/>
-                                    </font>
-                                </Label>
-
-                                <MenuButton fx:id="menuButton"
-                                            mnemonicParsing="false"
-                                            prefHeight="38.0"
-                                            prefWidth="400.0"
-                                            style="-fx-background-color: #ffffff; -fx-border-color: #d1d5db; -fx-border-radius: 6; -fx-background-radius: 6;"
-                                            text="Chọn loại sản phẩm">
-
-                                    <items>
-                                        <MenuItem text="Điện thoại &amp; Đồ công nghệ"/>
-                                        <MenuItem text="Đồ cổ &amp; Bộ sưu tập"/>
-                                        <MenuItem text="Thời trang &amp; Trang sức"/>
-                                        <MenuItem text="Khác"/>
-                                    </items>
-
-                                </MenuButton>
-
-                            </children>
-                        </VBox>
-
-                        <!-- MÔ TẢ -->
-                        <VBox spacing="5.0">
-                            <children>
-
-                                <Label text="Mô tả chi tiết"
-                                       textFill="#334155">
-                                    <font>
-                                        <Font name="System Bold" size="12.0"/>
-                                    </font>
-                                </Label>
-
-                                <TextArea fx:id="infoText"
-                                          prefHeight="100.0"
-                                          promptText="Nhập mô tả đặc điểm sản phẩm..."
-                                          wrapText="true"
-                                          style="-fx-background-radius: 6; -fx-border-color: #d1d5db; -fx-border-radius: 6;"/>
-
-                            </children>
-                        </VBox>
-
-                        <!-- CHỌN ẢNH -->
-                        <VBox spacing="5.0">
-                            <children>
-
-                                <Label text="Hình ảnh minh họa *"
-                                       textFill="#334155">
-                                    <font>
-                                        <Font name="System Bold" size="12.0"/>
-                                    </font>
-                                </Label>
-
-                                <Button fx:id="pickImage"
-                                        mnemonicParsing="false"
-                                        onAction="#handlePickImage"
-                                        prefHeight="40.0"
-                                        prefWidth="400.0"
-                                        style="-fx-background-color: #fffafa; -fx-border-color: #d31126; -fx-border-style: dashed; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: #d31126;"
-                                        text="📸  Tải ảnh từ máy tính (PNG, JPG)"/>
-
-                            </children>
-                        </VBox>
-
-                        <Region VBox.vgrow="ALWAYS"/>
-
-                        <!-- NÚT LƯU SẢN PHẨM -->
-                        <Button fx:id="addProduct"
-                                mnemonicParsing="false"
-                                onAction="#addItem"
-                                prefHeight="44.0"
-                                prefWidth="400.0"
-                                style="-fx-background-color: #cc0c1a; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;"
-                                text="LƯU &amp; TẠO SẢN PHẨM">
-
-                            <font>
-                                <Font size="13.0"/>
-                            </font>
-
-                        </Button>
-
-                    </children>
-                </VBox>
-
-                <!-- KHUNG XEM TRƯỚC -->
-                <VBox alignment="CENTER"
-                      spacing="14.0"
-                      HBox.hgrow="ALWAYS"
-                      style="-fx-background-color: #ffffff; -fx-background-radius: 10; -fx-border-color: #f2dce0; -fx-border-radius: 10;">
-
-                    <padding>
-                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
-                    </padding>
-
-                    <children>
-
-                        <Label text="XEM TRƯỚC VẬT PHẨM TRƯỚC KHI ĐĂNG"
-                               textFill="#d31126">
-                            <font>
-                                <Font name="System Bold" size="14.0"/>
-                            </font>
-                        </Label>
-
-                        <AnchorPane fx:id="showInfo"
-                                    prefHeight="450.0"
-                                    prefWidth="440.0"
-                                    style="-fx-background-color: #fffafa; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #f2dce0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 20, 0, 0, 6);"
-                                    VBox.vgrow="ALWAYS">
+                            <padding>
+                                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
+                            </padding>
 
                             <children>
-
-                                <VBox alignment="CENTER"
-                                      spacing="10.0"
-                                      AnchorPane.bottomAnchor="0.0"
-                                      AnchorPane.leftAnchor="0.0"
-                                      AnchorPane.rightAnchor="0.0"
-                                      AnchorPane.topAnchor="0.0">
-
+                                <!-- TIÊU ĐỀ -->
+                                <VBox spacing="4.0">
                                     <children>
-
-                                        <Label text="🖼️"
-                                               textFill="#d31126">
+                                        <Label text="Đăng Bán Sản Phẩm Mới" textFill="#d31126">
                                             <font>
-                                                <Font size="42.0"/>
+                                                <Font name="System Bold" size="22.0"/>
                                             </font>
                                         </Label>
-
-                                        <Label text="Chưa có hình ảnh"
-                                               textFill="#9ca3af">
+                                        <Label text="Vui lòng điền đầy đủ chi tiết vật phẩm để bắt đầu đấu giá" textFill="#6b7280">
                                             <font>
-                                                <Font name="System Bold" size="14.0"/>
+                                                <Font size="13.0"/>
                                             </font>
                                         </Label>
-
-                                        <Label text="Ảnh tải lên sẽ hiển thị tại khu vực này"
-                                               textFill="#cbd5e1">
-                                            <font>
-                                                <Font size="11.0"/>
-                                            </font>
-                                        </Label>
-
                                     </children>
                                 </VBox>
 
+                                <Separator style="-fx-background-color: transparent; -fx-border-color: #f2dce0; -fx-border-width: 1 0 0 0;" />
+
+                                <!-- TÊN SẢN PHẨM -->
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Tên sản phẩm *" textFill="#374151">
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="itemName" prefHeight="40.0" promptText="Ví dụ: Đồng hồ Rolex Submariner..."
+                                                   style="-fx-background-color: #f9fafb; -fx-background-radius: 6; -fx-border-color: #d1d5db; -fx-border-radius: 6; -fx-padding: 0 12 0 12;"/>
+                                    </children>
+                                </VBox>
+
+                                <!-- DANH MỤC -->
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Danh mục sản phẩm *" textFill="#374151">
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Label>
+                                        <MenuButton fx:id="menuButton" mnemonicParsing="false" prefHeight="40.0" maxWidth="Infinity"
+                                                    style="-fx-background-color: #f9fafb; -fx-border-color: #d1d5db; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 0 12 0 12;"
+                                                    text="--- Chọn loại sản phẩm ---" textFill="#4b5563">
+                                            <items>
+                                                <MenuItem text="Điện thoại &amp; Đồ công nghệ"/>
+                                                <MenuItem text="Đồ cổ &amp; Bộ sưu tập"/>
+                                                <MenuItem text="Thời trang &amp; Trang sức"/>
+                                                <MenuItem text="Khác"/>
+                                            </items>
+                                        </MenuButton>
+                                    </children>
+                                </VBox>
+
+                                <!-- MÔ TẢ -->
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Mô tả chi tiết" textFill="#374151">
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextArea fx:id="infoText" prefHeight="90.0" promptText="Mô tả tình trạng, năm sản xuất, xuất xứ..." wrapText="true"
+                                                  style="-fx-control-inner-background: #f9fafb; -fx-background-radius: 6; -fx-border-color: #d1d5db; -fx-border-radius: 6;"/>
+                                    </children>
+                                </VBox>
+
+                                <!-- CHỌN ẢNH -->
+                                <VBox spacing="5.0">
+                                    <children>
+                                        <Label text="Hình ảnh minh họa *" textFill="#374151">
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="pickImage" mnemonicParsing="false" onAction="#handlePickImage" prefHeight="40.0" maxWidth="Infinity"
+                                                style="-fx-background-color: #fce8e9; -fx-border-color: #d31126; -fx-border-style: dashed; -fx-border-radius: 6; -fx-background-radius: 6; -fx-cursor: hand; -fx-text-fill: #d31126; -fx-font-weight: bold;"
+                                                text="📸  TẢI ẢNH TỪ MÁY TÍNH (PNG, JPG)"/>
+                                    </children>
+                                </VBox>
+
+                                <!-- NÚT LƯU SẢN PHẨM -->
+                                <Button fx:id="addProduct" mnemonicParsing="false" onAction="#addItem" prefHeight="45.0" maxWidth="Infinity"
+                                        style="-fx-background-color: linear-gradient(to right, #d31126, #e11d48); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(211, 17, 38, 0.4), 8, 0, 0, 3);"
+                                        text="LƯU &amp; TẠO SẢN PHẨM">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="10.0"/>
+                                    </VBox.margin>
+                                </Button>
                             </children>
-                        </AnchorPane>
+                        </VBox>
 
+                        <!-- KHUNG XEM TRƯỚC ẢNH BÊN PHẢI -->
+                        <VBox alignment="CENTER" maxWidth="550.0" prefWidth="500.0" spacing="20.0"
+                              style="-fx-background-color: #ffffff; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 15, 0, 0, 4);"
+                              HBox.hgrow="ALWAYS">
+
+                            <padding>
+                                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+                            </padding>
+
+                            <children>
+                                <Label text="XEM TRƯỚC HÌNH ẢNH SẢN PHẨM" textFill="#d31126">
+                                    <font>
+                                        <Font name="System Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+
+                                <AnchorPane fx:id="showInfo" prefHeight="400.0" maxWidth="Infinity"
+                                            style="-fx-background-color: #f9fafb; -fx-background-radius: 12; -fx-border-radius: 12; -fx-border-color: #e5e7eb; -fx-border-style: dashed; -fx-border-width: 2;"
+                                            VBox.vgrow="ALWAYS">
+                                    <children>
+                                        <VBox alignment="CENTER" spacing="12.0"
+                                              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <Label text="🖼️" textFill="#9ca3af">
+                                                    <font>
+                                                        <Font size="52.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label text="Chưa có hình ảnh" textFill="#6b7280">
+                                                    <font>
+                                                        <Font name="System Bold" size="16.0"/>
+                                                    </font>
+                                                </Label>
+                                                <Label text="Ảnh tải lên sẽ hiển thị tại khu vực này" textFill="#9ca3af">
+                                                    <font>
+                                                        <Font size="13.0"/>
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </VBox>
                     </children>
-                </VBox>
-
-            </children>
-        </HBox>
+                </HBox>
+            </content>
+        </ScrollPane>
     </center>
-
 </BorderPane>
