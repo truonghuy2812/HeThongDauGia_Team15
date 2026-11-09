@@ -105,19 +105,19 @@ public class MyProductController {
 
     @FXML
     private void goToMyBids() {
-        // TODO: Màn hình Đấu giá của tôi
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/my-bids-view.fxml", "Tài khoản của tôi - Team 15");
         System.out.println("Chuyển sang màn hình Đấu giá của tôi...");
     }
 
     @FXML
     private void goToWallet() {
-        // TODO: Màn hình Ví & Nạp tiền (PaymentController)
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/payment-view.fxml", "");
         System.out.println("Chuyển sang màn hình Ví & Nạp tiền...");
     }
 
     @FXML
     private void goToAccount() {
-        // TODO: Màn hình Quản lý Tài khoản cá nhân
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/account-view.fxml", "Tài khoản của tôi - Team 15");
         System.out.println("Chuyển sang màn hình Tài khoản...");
     }
 

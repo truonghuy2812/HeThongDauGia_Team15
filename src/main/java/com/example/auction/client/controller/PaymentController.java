@@ -104,7 +104,7 @@ public class PaymentController {
     @FXML
     private void goToAccount() {
         System.out.println("Chuyển sang màn hình Tài khoản cá nhân...");
-        // SceneManager.getInstance().switchScene("/com/example/auction/client/view/account-view.fxml", "Tài khoản của tôi - Team 15");
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/account-view.fxml", "Tài khoản của tôi - Team 15");
     }
 
     @FXML
