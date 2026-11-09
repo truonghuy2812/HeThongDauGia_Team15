@@ -5,6 +5,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
+import javafx.application.Platform;
 
 public class PaymentController {
 
@@ -65,8 +66,7 @@ public class PaymentController {
             String currentUser = SessionManager.getCurrentUser();
             System.out.println("User [" + currentUser + "] yêu cầu nạp: " + amount + " VNĐ.");
 
-            // TODO: [BACKEND] - Đóng gói thông tin (currentUser, amount) thành DTO và gửi qua Socket.
-            // Hệ thống sẽ lưu yêu cầu này với trạng thái "PENDING" để Admin duyệt trong AdminDepositManager.
+            // TODO: [BACKEND] - Đóng gói thông tin (currentUser, amount) thành DTO và gửi qua Socket trong Thread mới.
 
             SceneManager.getInstance().showAlert(Alert.AlertType.INFORMATION, "Thành công",
                     "Đã gửi yêu cầu nạp " + String.format("%,.0f", amount) + " VNĐ.\nVui lòng chờ Quản trị viên (Admin) phê duyệt.");
@@ -91,19 +91,20 @@ public class PaymentController {
 
     @FXML
     private void goToMyBids() {
-        // TODO: Chuyển sang màn hình Đấu giá của tôi
-        System.out.println("Chuyển sang màn hình Đấu giá của tôi...");
+        // Gọi đến màn hình Đấu giá của tôi
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/my-bids-view.fxml", "Đấu giá của tôi - Team 15");
     }
 
     @FXML
     private void goToMyProducts() {
-        SceneManager.getInstance().switchScene("/com/example/auction/client/view/all-added-product.fxml", "Sản phẩm của tôi - Team 15");
+        // CẬP NHẬT: Đã đổi tên hàm và FXML để gọi tới MyProductController thay vì AllAddedProduct
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/my-product.fxml", "Sản phẩm của tôi - Team 15");
     }
 
     @FXML
     private void goToAccount() {
-        // TODO: Chuyển sang màn hình Tài khoản của tôi
         System.out.println("Chuyển sang màn hình Tài khoản cá nhân...");
+        // SceneManager.getInstance().switchScene("/com/example/auction/client/view/account-view.fxml", "Tài khoản của tôi - Team 15");
     }
 
     @FXML

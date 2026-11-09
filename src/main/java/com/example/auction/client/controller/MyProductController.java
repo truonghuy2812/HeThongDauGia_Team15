@@ -11,7 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class AllAddedProductController {
+public class MyProductController {
 
     // --- Khai báo thanh Header ---
     @FXML private TextField txtSearchMyProduct;

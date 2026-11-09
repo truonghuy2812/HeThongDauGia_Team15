@@ -58,6 +58,7 @@ import java.time.Instant;
  * updateUI(bid.amount())  // Update current bid
  * }
  */
+
 public record BidDTO(
     Long auctionId,  // Auction ID
     Long bidderId,// Bidder id

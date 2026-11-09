@@ -106,7 +106,7 @@ public class LoginController implements MessageHandler {
                 txtPassword.clear();
             }
         });
-
+    }
     @FXML
     private void goToRegister() {
         SceneManager.getInstance().switchScene("/com/example/auction/client/view/signup.fxml", "Đăng ký tài khoản - Team 15");

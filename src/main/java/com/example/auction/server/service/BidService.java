@@ -1,3 +1,4 @@
+/*
 package com.example.auction.server.service;
 
 import com.example.auction.database.dao.*;
@@ -108,3 +109,4 @@ public class BidService {
         PaymentRequestDAO.getInstance().createPaymentRequest(paymentDTO);
     }
 }
+*/
