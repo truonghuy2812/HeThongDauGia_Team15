@@ -6,7 +6,6 @@ import java.time.Instant;
 public class ArtItem extends Item {
     private String artistName; // tên tgia
     private int yearCreated; // năm tạo sp
-
     public ArtItem(String itemName, String mieutaItem, Long sellerId) {
         super(itemName, mieutaItem, sellerId ,"ART");
     }
