@@ -44,18 +44,18 @@ public class AddProductController /* implements MessageHandler */ {
         // ... (Các bước khởi tạo Image và ImageView giữ nguyên)
         Image dragonGif = new Image(getClass().getResourceAsStream("/Imagine/BoomChakalaka.gif"));
         ImageView dragon = new ImageView(dragonGif);
-        dragon.setFitWidth(300);
-        dragon.setFitHeight(300);
+        dragon.setFitWidth(600);
+        dragon.setFitHeight(600);
 
 // 1. Đặt tọa độ ban đầu lùi hẳn ra ngoài màn hình bên trái
         dragon.setX(-400);
-        dragon.setY(150);
+        dragon.setY(-150);
 
         showInfo.getChildren().add(dragon);
 
 // 2. Cài đặt Animation bay ngang
         TranslateTransition fly = new TranslateTransition(Duration.seconds(5), dragon);
-        fly.setByX(1800); // Bay một quãng đường 1800 pixel sang phải
+//        fly.setByX(1800); // Bay một quãng đường 1800 pixel sang phải
 
 // 3. CÁC TÙY CHỈNH ĐỂ BAY "ĐẸP" HƠN:
 
