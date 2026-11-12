@@ -14,7 +14,8 @@ import java.io.ObjectOutputStream;
 
 public class SignupController implements MessageHandler {
 
-    @FXML private TextField txtUsername;
+    // 1. Sửa txtUsername thành txtName cho khớp với FXML
+    @FXML private TextField txtName;
     @FXML private TextField txtEmail;
     @FXML private PasswordField txtPassword;
     @FXML private PasswordField txtConfirmPassword;
@@ -24,9 +25,16 @@ public class SignupController implements MessageHandler {
         AuctionClientSocket.getInstance().setMessageHandler(this);
     }
 
+    // 2. Thêm hàm Quay lại trang chủ
     @FXML
-    private void handleRegister() {
-        String username = txtUsername.getText();
+    private void handleBackToMain() {
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/Main.fxml", "Trang chủ - Team 15");
+    }
+
+    // 3. Đổi tên hàm từ handleRegister thành handleSignup
+    @FXML
+    private void handleSignup() {
+        String username = txtName.getText(); // Lấy dữ liệu từ txtName
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         String confirmPassword = txtConfirmPassword.getText();

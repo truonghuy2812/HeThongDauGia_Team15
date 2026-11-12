@@ -9,33 +9,31 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.shape.SVGPath;
 
 import java.io.ObjectOutputStream;
 
 public class LoginController implements MessageHandler {
 
-    @FXML private TextField txtUsername;
+    // 1. Đổi txtUsername thành txtEmail để khớp fx:id trong FXML
+    @FXML private TextField txtEmail;
     @FXML private PasswordField txtPassword;
-    @FXML private SVGPath eyeIcon;
 
     @FXML
     public void initialize() {
         // Đăng ký để lắng nghe Server trả lời
         AuctionClientSocket.getInstance().setMessageHandler(this);
-        SceneManager.getInstance().setupPasswordToggle(txtPassword, eyeIcon);
     }
 
     @FXML
     private void handleLogin() {
-        String inputAccount = txtUsername.getText().trim();
+        String inputEmail = txtEmail.getText().trim();
         String password = txtPassword.getText().trim();
 
-        if (inputAccount.isEmpty() || password.isEmpty()) {
-            SceneManager.getInstance().showAlert(Alert.AlertType.WARNING, "Lỗi", "Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
+        if (inputEmail.isEmpty() || password.isEmpty()) {
+            SceneManager.getInstance().showAlert(Alert.AlertType.WARNING, "Lỗi", "Vui lòng nhập đầy đủ email và mật khẩu!");
             return;
         }
-        System.out.println("Đang gửi yêu cầu đăng nhập cho: " + inputAccount);
+        System.out.println("Đang gửi yêu cầu đăng nhập cho: " + inputEmail);
 
         // ==============================================================
         // CODE GỌI MẠNG THẬT: Gửi dữ liệu xuống Server để tra cứu SQL
@@ -44,11 +42,12 @@ public class LoginController implements MessageHandler {
             try {
                 synchronized (AuctionClientSocket.getInstance()) {
                     ObjectOutputStream out = AuctionClientSocket.getInstance().getOut();
+
                     // Đóng gói DTO gửi đi. Backend đang dùng email để check login
-                    // Sửa lại dòng này trong handleLogin() của LoginController.java:
-                    // Đổi lại vị trí: tham số thứ 3 là password, tham số thứ 4 là inputAccount (email)
-                    UserDTO userDTO = new UserDTO(null, null, password, inputAccount, null, null);
+                    UserDTO userDTO = new UserDTO(null, null, password, inputEmail, null, null);
                     MessageProtocol request = new MessageProtocol("LOGIN", userDTO, null, null);
+
+                    out.reset(); // Đặt reset() cho an toàn
                     out.writeObject(request);
                     out.flush();
                 }
@@ -86,7 +85,14 @@ public class LoginController implements MessageHandler {
     }
 
     @FXML
-    private void goToRegister() {
+    private void handleBackToMain() {
+        // Gọi SceneManager để quay lại trang chủ
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/Main.fxml", "Trang chủ - Team 15");
+    }
+
+    // 2. Đổi goToRegister thành goToSignup
+    @FXML
+    private void goToSignup() {
         SceneManager.getInstance().switchScene("/com/example/auction/client/view/signup.fxml", "Đăng ký tài khoản - Team 15");
     }
 }
