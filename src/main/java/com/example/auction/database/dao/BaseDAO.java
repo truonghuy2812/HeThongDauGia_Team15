@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public abstract class BaseDAO {
     // kết nối đến database bằng root user
     // cac DAO sau buoc phai ke thua
-    static String URL = "jdbc:mysql://localhost:3306/auction?useSSL=false&serverTimezone=UTC";
+    static String URL = "jdbc:mysql://192.168.0.104:3306/auction";
     static String USERNAME = "root";
     static String PASSWORD = "1234";
     // Method để lấy Connection (kết nối database)
