@@ -1,5 +1,6 @@
 package com.example.auction.client.controller;
 
+import com.example.auction.client.view.ClockUtil;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -31,7 +32,7 @@ public class AddProductController /* implements MessageHandler */ {
     @FXML private TextArea infoText;
     @FXML private AnchorPane showInfo;
     @FXML private Button btnback;
-
+    @FXML private Label lblClock;
     private File selectedImageFile;
 
     // =========================================================================
@@ -39,6 +40,7 @@ public class AddProductController /* implements MessageHandler */ {
     // =========================================================================
     @FXML
     public void initialize() {
+        ClockUtil.bindClockToLabel(lblClock);
         // TODO: Đăng ký nhận tin nhắn từ Server (Mở comment khi có Backend)
         // AuctionClientSocket.getInstance().setMessageHandler(this);
         // ... (Các bước khởi tạo Image và ImageView giữ nguyên)

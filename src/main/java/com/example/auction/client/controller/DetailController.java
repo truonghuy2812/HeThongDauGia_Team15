@@ -29,6 +29,7 @@ public class DetailController {
 
     @FXML
     public void initialize() {
+
         System.out.println("Đã load màn hình Chi tiết sản phẩm.");
         // TODO: [BACKEND] - Nhận ID sản phẩm từ màn hình trước truyền sang.
         // TODO: [BACKEND] - Gọi Socket lấy dữ liệu chi tiết của sản phẩm theo ID và đổ vào các Label, ImageView.

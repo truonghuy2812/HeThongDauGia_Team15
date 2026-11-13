@@ -1,5 +1,6 @@
 package com.example.auction.client.controller;
 
+import com.example.auction.client.view.ClockUtil;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -8,10 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableCell;
+import javafx.scene.control.*;
 
 public class MyBidsController /* implements MessageHandler */ {
 
@@ -19,7 +17,7 @@ public class MyBidsController /* implements MessageHandler */ {
     // PHẦN 1: LÃNH ĐỊA CỦA FRONTEND (UI COMPONENTS)
     // =========================================================================
     @FXML private MenuButton userMenuButton;
-
+    @FXML private Label lblClock;
     @FXML private TableView<BidViewModel> tblMyBids;
     @FXML private TableColumn<BidViewModel, Integer> colId;
     @FXML private TableColumn<BidViewModel, String> colProductName;
@@ -34,6 +32,7 @@ public class MyBidsController /* implements MessageHandler */ {
     // =========================================================================
     @FXML
     public void initialize() {
+        ClockUtil.bindClockToLabel(lblClock);
         System.out.println("Đã load màn hình Đấu giá của tôi.");
 
         // TODO: Đăng ký nhận tin nhắn từ Server (Mở comment khi ghép Backend)

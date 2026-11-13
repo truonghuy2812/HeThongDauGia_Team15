@@ -1,5 +1,6 @@
 package com.example.auction.client.controller;
 
+import com.example.auction.client.view.ClockUtil;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,7 +26,7 @@ public class MainController {
     @FXML private Button btnNavMyProducts;
     @FXML private Button btnNavWallet;
     @FXML private Button btnNavAccount;
-
+    @FXML private Label lblClock; // Nhớ đặt tên trùng với fx:id ngoài SceneBuilder
     private static final String ACTIVE_BTN_STYLE =
             "-fx-background-color: #fce8e9; -fx-background-radius: 5; -fx-text-fill: #d31126; -fx-font-weight: bold; -fx-cursor: hand;";
     private static final String INACTIVE_BTN_STYLE =
@@ -33,6 +34,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
+        ClockUtil.bindClockToLabel(lblClock);
         // Mặc định luôn sáng nút Trang chủ cho Khách
         setActiveSidebarButton(btnNavHome);
 

@@ -1,7 +1,9 @@
 package com.example.auction.client.controller;
 
+import com.example.auction.client.view.ClockUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
@@ -11,9 +13,10 @@ public class MainAfterLoginController {
     @FXML private TextField txtSearch;
     @FXML private FlowPane productContainer;
     @FXML private MenuButton userMenuButton;
-
+    @FXML private Label lblClock;
     @FXML
     public void initialize() {
+        ClockUtil.bindClockToLabel(lblClock);
         if (SessionManager.isLoggedIn() && userMenuButton != null) {
             userMenuButton.setText(SessionManager.getCurrentUser());
         }

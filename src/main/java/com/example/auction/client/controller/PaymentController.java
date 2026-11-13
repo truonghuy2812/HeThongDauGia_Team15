@@ -2,6 +2,7 @@ package com.example.auction.client.controller;
 
 import com.example.auction.client.clientnetworkmanager.AuctionClientSocket;
 import com.example.auction.client.clientnetworkmanager.MessageHandler;
+import com.example.auction.client.view.ClockUtil;
 import com.example.auction.shared.dto.MessageProtocol;
 //import com.example.auction.shared.dto.DepositDTO; // DTO ví dụ, nhớ check lại với Backend
 import javafx.application.Platform;
@@ -21,9 +22,10 @@ public class PaymentController implements MessageHandler {
     // Khai báo các thành phần trong khu vực Ví & Nạp tiền
     @FXML private Label lblBalance;
     @FXML private TextField txtDepositAmount;
-
+    @FXML private Label lblClock;
     @FXML
     public void initialize() {
+        ClockUtil.bindClockToLabel(lblClock);
         System.out.println("Đã load màn hình Ví & Nạp tiền.");
 
         // BẮT BUỘC: Đăng ký nghe Socket cho màn hình này
@@ -89,7 +91,9 @@ public class PaymentController implements MessageHandler {
             SceneManager.getInstance().showAlert(Alert.AlertType.ERROR, "Sai định dạng", "Vui lòng chỉ nhập số.");
         }
     }
-
+    public void goToAddProduct(){
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/addproduct-view.fxml", "Thêm Sản Phẩm Đấu Giá - Team 15");
+    }
     // HÀM HỨNG DỮ LIỆU TỪ SERVER TRẢ VỀ
     @Override
     public void onMessageReceived(MessageProtocol response) {

@@ -1,15 +1,13 @@
 package com.example.auction.client.controller;
 
+import com.example.auction.client.view.ClockUtil;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class MyProductController {
 
@@ -25,12 +23,13 @@ public class MyProductController {
     @FXML private TableColumn<ProductViewModel, Double> colStartPrice;
     @FXML private TableColumn<ProductViewModel, Double> colCurrentPrice;
     @FXML private TableColumn<ProductViewModel, String> colStatus;
-
+    @FXML private Label lblClock;
     // Danh sách lưu trữ dữ liệu hiển thị trên bảng
     private ObservableList<ProductViewModel> productList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
+        ClockUtil.bindClockToLabel(lblClock);
         System.out.println("Đã load màn hình Quản lý Sản phẩm của tôi.");
 
         // Cập nhật tên người dùng trên góc phải nếu đã login

@@ -35,7 +35,7 @@ public class AuctionClientApp extends Application {
         // SceneManager.getInstance().switchScene("/com/example/auction/client/view/login-view.fxml", "Đăng nhập - Team 15");
 
         // HOẶC test thẳng màn hình Thêm Sản Phẩm (Bỏ comment dòng này, comment dòng trên):
-        SceneManager.getInstance().switchScene("/com/example/auction/client/view/Main.fxml", "");
+        SceneManager.getInstance().switchScene("/com/example/auction/client/view/MainAfterLogin.fxml", "");
 
         // HOẶC test thẳng màn hình Chi tiết sản phẩm:
         // SceneManager.getInstance().switchScene("/com/example/auction/client/view/detail-view.fxml", "Chi tiết SP - Test UI");
