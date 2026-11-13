@@ -9,6 +9,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 public class SceneManager {
     // 1. ÁP DỤNG SINGLETON PATTERN
     private static SceneManager instance;
@@ -66,10 +74,32 @@ public class SceneManager {
         }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Scene scene = new Scene(loader.load(), width, height);
+            Parent newRoot = loader.load();
+
+            // Lắng nghe mọi cú click chuột trên toàn bộ giao diện mới này
+            newRoot.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_PRESSED, event -> {
+                // Nếu click trúng một cái Nút bấm (Button)
+                if (event.getTarget() instanceof javafx.scene.Node node) {
+                    if (node instanceof javafx.scene.control.ButtonBase || node.getParent() instanceof javafx.scene.control.ButtonBase) {
+                        SoundManager.getInstance().playSFX("click.mp3");
+                    }
+                }
+            });
+
+            Scene currentScene = primaryStage.getScene();
+            if (currentScene != null) {
+                // Nếu đã có Scene (đã qua màn hình Login), ta chỉ thay đổi lõi giao diện bên trong.
+                // Điều này giúp giữ nguyên trạng thái Maximized/FullScreen của cửa sổ.
+                currentScene.setRoot(newRoot);
+            } else {
+                // Lần chạy đầu tiên ứng dụng chưa có Scene thì mới tạo mới
+                Scene scene = new Scene(newRoot, width, height);
+                primaryStage.setScene(scene);
+                primaryStage.centerOnScreen();
+            }
+
             primaryStage.setTitle(title);
-            primaryStage.setScene(scene);
-            primaryStage.centerOnScreen();
+
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Lỗi chuyển trang", "Không thể tải giao diện: " + fxmlPath);

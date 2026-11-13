@@ -1,5 +1,6 @@
 package com.example.auction.client.controller;
 
+import com.example.auction.client.view.ClockUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -16,12 +17,13 @@ public class AccountController {
     @FXML private TextField txtProfileUsername;
     @FXML private TextField txtProfileEmail;
     @FXML private Label lblAccountUsername;
-
+    @FXML private Label lblClock;
     // =========================================================================
     // PHẦN 2: KHỞI TẠO DỮ LIỆU
     // =========================================================================
     @FXML
     public void initialize() {
+        ClockUtil.bindClockToLabel(lblClock);
         System.out.println("Đã load màn hình Tài khoản của tôi.");
 
         if (SessionManager.isLoggedIn()) {

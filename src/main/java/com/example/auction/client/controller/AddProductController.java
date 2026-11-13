@@ -1,5 +1,6 @@
 package com.example.auction.client.controller;
 
+import com.example.auction.client.view.ClockUtil;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,11 +11,16 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.ObjectOutputStream;
-
+import javafx.animation.TranslateTransition;
+import javafx.util.Duration;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 // TODO: Mở comment các import này khi ghép Backend
 // import com.example.auction.client.clientnetworkmanager.AuctionClientSocket;
 // import com.example.auction.shared.dto.MessageProtocol;
 // import com.example.auction.shared.dto.ItemDTO;
+import javafx.animation.Interpolator; // Bổ sung import này
+import javafx.animation.Animation; // Bổ sung import này
 
 public class AddProductController /* implements MessageHandler */ {
 
@@ -26,7 +32,7 @@ public class AddProductController /* implements MessageHandler */ {
     @FXML private TextArea infoText;
     @FXML private AnchorPane showInfo;
     @FXML private Button btnback;
-
+    @FXML private Label lblClock;
     private File selectedImageFile;
 
     // =========================================================================
@@ -34,9 +40,38 @@ public class AddProductController /* implements MessageHandler */ {
     // =========================================================================
     @FXML
     public void initialize() {
+        ClockUtil.bindClockToLabel(lblClock);
         // TODO: Đăng ký nhận tin nhắn từ Server (Mở comment khi có Backend)
         // AuctionClientSocket.getInstance().setMessageHandler(this);
+        // ... (Các bước khởi tạo Image và ImageView giữ nguyên)
+        Image dragonGif = new Image(getClass().getResourceAsStream("/Imagine/BoomChakalaka.gif"));
+        ImageView dragon = new ImageView(dragonGif);
+        dragon.setFitWidth(600);
+        dragon.setFitHeight(600);
 
+// 1. Đặt tọa độ ban đầu lùi hẳn ra ngoài màn hình bên trái
+        dragon.setX(-400);
+        dragon.setY(-150);
+
+        showInfo.getChildren().add(dragon);
+
+// 2. Cài đặt Animation bay ngang
+        TranslateTransition fly = new TranslateTransition(Duration.seconds(5), dragon);
+//        fly.setByX(1800); // Bay một quãng đường 1800 pixel sang phải
+
+// 3. CÁC TÙY CHỈNH ĐỂ BAY "ĐẸP" HƠN:
+
+// Lặp lại vô hạn (bay qua bay lại không bao giờ dừng)
+        fly.setCycleCount(Animation.INDEFINITE);
+
+// Tự động đảo chiều (bay từ trái sang phải, rồi lại từ phải sang trái)
+        fly.setAutoReverse(true);
+
+// Chỉnh gia tốc (bay mượt mà, từ từ tăng tốc rồi giảm tốc khi đến mép)
+        fly.setInterpolator(Interpolator.EASE_BOTH);
+
+// 4. Bắt đầu bay
+        fly.play();
         // Tự động cập nhật chữ trên MenuButton khi chọn danh mục
         if (menuButton != null) {
             for (MenuItem item : menuButton.getItems()) {
