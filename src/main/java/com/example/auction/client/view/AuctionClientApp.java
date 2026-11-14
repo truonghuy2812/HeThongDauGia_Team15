@@ -1,5 +1,6 @@
 package com.example.auction.client.view;
 import atlantafx.base.theme.PrimerLight;
+import com.example.auction.client.clientnetworkmanager.AuctionClientSocket;
 import com.example.auction.client.controller.SoundManager;
 import javafx.application.Application;
 import com.example.auction.client.controller.SceneManager;
@@ -16,40 +17,40 @@ public class AuctionClientApp extends Application {
 
         SoundManager.getInstance().playBGM("lofi_bgm.mp3");
         // ==========================================================
-        // 1. TẠM TẮT LUỒNG KẾT NỐI MẠNG ĐỂ LÀM GIAO DIỆN (UI MODE)
+        // 1. MỞ LUỒNG KẾT NỐI MẠNG ĐẾN SERVER (ONLINE MODE)
         // ==========================================================
-        /*
         new Thread(() -> {
             try {
-                AuctionClientSocket.getInstance().connectToServer("localhost", 5000);
+                com.example.auction.client.clientnetworkmanager.AuctionClientSocket.getInstance().connectToServer("localhost", 5000);
+                System.out.println("Đã gửi yêu cầu kết nối đến Server thành công!");
             } catch (Exception e) {
-                System.out.println("Không thể kết nối đến Server!");
+                System.err.println("Không thể kết nối đến Server. Vui lòng kiểm tra lại AuctionServer đã chạy chưa!");
             }
         }).start();
-        */
 
         // ==========================================================
-        // 2. CHỌN MÀN HÌNH MÀ ÔNG ĐANG MUỐN THIẾT KẾ VÀ TEST UI
+        // 2. KHỞI CHẠY MÀN HÌNH ĐẦU TIÊN (ĐĂNG NHẬP)
         // ==========================================================
-        // Bật màn hình Login:
-        // SceneManager.getInstance().switchScene("/com/example/auction/client/view/login-view.fxml", "Đăng nhập - Team 15");
+        // Khi chạy online, bắt buộc phải vào màn Đăng nhập/Đăng ký trước
+        com.example.auction.client.controller.SceneManager.getInstance().switchScene("/com/example/auction/client/view/login-view.fxml", "Đăng nhập - Team 15");
 
-        // HOẶC test thẳng màn hình Thêm Sản Phẩm (Bỏ comment dòng này, comment dòng trên):
-        SceneManager.getInstance().switchScene("/com/example/auction/client/view/MainAfterLogin.fxml", "");
-
-        // HOẶC test thẳng màn hình Chi tiết sản phẩm:
+        // Các màn hình test UI cũ tạm thời được comment lại
+        // SceneManager.getInstance().switchScene("/com/example/auction/client/view/MainAfterLogin.fxml", "");
         // SceneManager.getInstance().switchScene("/com/example/auction/client/view/detail-view.fxml", "Chi tiết SP - Test UI");
 
         // ==========================================================
-        // 3. TẠM TẮT ĐÓNG SOCKET KHI TẮT APP
+        // 3. ĐÓNG SOCKET AN TOÀN KHI TẮT APP
         // ==========================================================
         stage.setOnCloseRequest(e -> {
-            // AuctionClientSocket.getInstance().closeConnection();
+            // Ngắt kết nối để Server không bị treo tài nguyên
+            com.example.auction.client.clientnetworkmanager.AuctionClientSocket.getInstance().closeConnection();
             System.exit(0);
         });
+
         stage.setMaximized(true);
         stage.show();
     }
+
     public static void main(String[] args) {
         launch();
     }
